@@ -1,10 +1,9 @@
 import React from 'react'
-import { DesktopLogo, LaptopLogo, MobileLogo } from './assets/Logo'
+import { Home } from './pages'
 
 const App = () => {
   return (
-    <div className='text-yellow-55 text-9xl font-inter bg-dark-8'>
-    </div>
+    <Home />
   )
 }
 

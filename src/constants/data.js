@@ -194,17 +194,17 @@ const resourceFooter = [
 const socialIcons = [
     {
         id: 1,
-        icon: <FaXTwitter />,
+        icon: "<FaXTwitter />",
         link: '/',
     },
     {
         id: 2,
-        icon: <FaMedium />,
+        icon: "<FaMedium />",
         link: '/',
     },
     {
         id: 3,
-        icon: <FaLinkedin />,
+        icon: "<FaLinkedin />",
         link: '/',
     },
 

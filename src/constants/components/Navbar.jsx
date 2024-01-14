@@ -15,7 +15,7 @@ const Navbar = () => {
                     {
                         navItems.map((item) => {
                             const { id, title, link } = item;
-                            return <NavLink to={link} key={id} className={({ isActive }) => isActive ? ' text-white bg-dark-8 rounded-lg p-4 ' : 'p-4'} >{title}</NavLink>
+                            return <NavLink to={link} key={id} className={({ isActive }) => isActive ? ' text-white bg-dark-8 rounded-xl p-4 ' : 'p-4'} >{title}</NavLink>
                         })
                     }
                 </div>
@@ -28,5 +28,4 @@ const Navbar = () => {
         </section>
     )
 }
-/* className={`${active ? 'bg-dark-8 rounded-xl p-4 border-dark-20 border text-white font-medium' : ""} `} */
 export default Navbar

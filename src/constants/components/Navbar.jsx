@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { DesktopLogo, MobileLogo, LaptopLogo } from '../../assets/Logo'
 import { navItems } from '../data'
 import { Link, NavLink } from 'react-router-dom'
@@ -8,9 +8,23 @@ const Navbar = () => {
 
     const [navActive, setNavActive] = useState(false);
 
+    /* Exit Mobile Nav on Click outside of Nav */
+
+    /* const mobileRef = useRef(null);
+
+
+    const handleClick = (e) => {
+        if (mobileRef.current && !mobileRef.current?.contains(e.target)) {
+            setNavActive(false)
+        }
+    }
+
+    document.addEventListener('click', handleClick);
+    document.removeEventListener('click', handleClick) */
+
     return (
         <section className='bg-dark-10 p-4'>
-            <nav className='flex items-center justify-between mx-auto'>
+            <nav className='lg:px-10 xl:px-40 flex items-center justify-between mx-auto'>
                 <div className='md:hidden'>
                     <MobileLogo />
                 </div>

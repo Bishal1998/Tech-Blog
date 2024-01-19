@@ -1,11 +1,11 @@
 import React from 'react'
-import { GroupImage } from '../../constants/components'
+import { Hero } from './components'
 
 
 const Home = () => {
     return (
         <div>
-            <GroupImage />
+            <Hero />
         </div>
     )
 }

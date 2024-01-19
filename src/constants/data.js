@@ -209,4 +209,23 @@ const socialIcons = [
     },
 
 ]
-export { navItems, homeFooter, newsFooter, blogFooter, podcastFooter, resourceFooter, socialIcons }
+
+const groupImages = [
+    {
+        id: 1,
+        image: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+        id: 2,
+        image: "https://images.pexels.com/photos/428333/pexels-photo-428333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+        id: 3,
+        image: "https://images.pexels.com/photos/2121541/pexels-photo-2121541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+        id: 4,
+        image: "https://images.pexels.com/photos/2955305/pexels-photo-2955305.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+]
+export { navItems, homeFooter, newsFooter, blogFooter, podcastFooter, resourceFooter, socialIcons, groupImages }

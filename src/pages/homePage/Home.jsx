@@ -1,8 +1,12 @@
 import React from 'react'
+import { GroupImage } from '../../constants/components'
+
 
 const Home = () => {
     return (
-        <div>Home</div>
+        <div>
+            <GroupImage />
+        </div>
     )
 }
 

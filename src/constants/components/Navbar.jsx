@@ -57,8 +57,8 @@ const Navbar = () => {
                 {/* mobile menu overlay */}
                 {
                     navActive && (
-                        <nav className='absolute top-0 right-0 bg-dark-10 h-full w-1/2 '>
-                            <div className='text-gray-50 absolute right-5 top-5 z-50' onClick={() => setNavActive(false)}>
+                        <nav className='absolute z-50 top-0 right-0 bg-dark-10 h-full w-1/2 '>
+                            <div className='text-gray-50 absolute right-5 top-5' onClick={() => setNavActive(false)}>
                                 <AiOutlineCloseCircle size={30} />
                             </div>
                             <div className='lg:hidden text-gray-50 font-inter gap-12 text-lg flex flex-col items-center justify-center h-full '>

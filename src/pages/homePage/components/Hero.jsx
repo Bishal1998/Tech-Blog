@@ -23,7 +23,7 @@ const stats = [
 const Hero = () => {
     return (
         <section className="w-full md:px-6 lg:px-10 xl:px-40">
-            <div className="flex flex-col lg:flex-row justify-center items-center">
+            <div className="flex flex-col lg:flex-row justify-center items-center pb-10 lg:pb-0">
                 <div className="w-full md:w-3/4 px-6 lg:border-r border-dark-15">
                     <div className="space-y-5 py-6 lg:pt-[130px] lg:pb-[80px]">
                         <p className="font-kumbh text-lg md:text-2xl 2xl:text-3xl font-medium text-dark-40">

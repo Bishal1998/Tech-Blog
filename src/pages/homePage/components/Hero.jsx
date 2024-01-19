@@ -72,7 +72,7 @@ const Hero = () => {
                     </NavLink>
                 </div>
             </div>
-            <hr className="absolute w-full border left-0 border-dark-15" />
+            <hr className="absolute w-full border left-0 border-dark-15 z-40" />
             <div className="px-6 lg:px-0 flex flex-col gap-12 lg:flex-row items-start lg:items-center justify-between py-10 ">
                 {
                     heroItems.map((item) => {

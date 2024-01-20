@@ -24,7 +24,7 @@ const Navbar = () => {
 
     return (
         <section className='bg-dark-10 p-4'>
-            <nav className='lg:px-10 xl:px-40 flex items-center justify-between mx-auto'>
+            <nav className='lg:px-20 flex items-center justify-between mx-auto'>
                 <div className='md:hidden'>
                     <MobileLogo />
                 </div>

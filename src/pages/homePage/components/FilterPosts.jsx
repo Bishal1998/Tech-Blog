@@ -1,11 +1,10 @@
 import React, { useCallback, useState } from "react";
-import { Title } from "../constants/components";
+import { FilteredPost, Title } from "../constants/components";
 import { filterPosts } from "../constants/data";
 
 const FilterPosts = () => {
   const [selected, setSelected] = useState("All");
 
-  console.log(selected);
   return (
     <section>
       <Title
@@ -39,6 +38,18 @@ const FilterPosts = () => {
           );
         })}
       </div>
+      {filterPosts
+        .filter((post) => post.category === selected)
+        .map((post) => {
+          const { id } = post;
+
+          return <FilteredPost key={id} {...post} />;
+        })}
+      {selected === "All" &&
+        filterPosts.map((post) => {
+          const { id } = post;
+          return <FilteredPost key={id} {...post} />;
+        })}
     </section>
   );
 };

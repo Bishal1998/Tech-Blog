@@ -1,4 +1,5 @@
 import Title from "./Title";
 import Features from "./Features";
+import FilteredPost from "./FilteredPost";
 
-export { Title, Features }
+export { Title, Features, FilteredPost };

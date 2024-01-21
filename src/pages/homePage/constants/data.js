@@ -55,7 +55,7 @@ const filterPosts = [
         author: 'John Techson',
         category: 'Quantum Computing',
         link: '/',
-        date: Date.now(),
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
         authorImg: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
@@ -68,7 +68,7 @@ const filterPosts = [
         author: 'Sarah Ethicist',
         category: 'AI Ethics',
         link: '/',
-        date: Date.now(),
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
         authorImg: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
@@ -81,7 +81,7 @@ const filterPosts = [
         author: 'Astronomer X',
         category: 'Space Exploration',
         link: '/',
-        date: Date.now(),
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
         authorImg: 'https://images.pexels.com/photos/997489/pexels-photo-997489.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
@@ -94,7 +94,7 @@ const filterPosts = [
         author: 'Alastair Cook',
         category: 'Biotechnology',
         link: '/',
-        date: Date.now(),
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
         authorImg: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
@@ -107,7 +107,7 @@ const filterPosts = [
         author: 'David Miller',
         category: 'Renewable Energy',
         link: '/',
-        date: Date.now(),
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
         authorImg: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     }
 ]

@@ -25,6 +25,7 @@ const Blog = () => {
             <Title title='Unlock the Power of' desc='FutureTech Features' />
             <Features logo={futureBlogLogo} title='Future Technology Blog' desc='Stay informed with our blog section dedicated to future technology.' dataItems={futureBlog} />
             <Features logo={researchBlogLogo} title='Research Insights Blogs' desc='Dive deep into future technology concepts with our research section.' dataItems={researchBlogs} />
+            <Title title='A Knowledge Treasure Trove' link='blogs' desc="Explore FutureTech' s In-Depth Blog Posts" content='Blogs' />
         </section>
     )
 }

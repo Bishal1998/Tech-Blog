@@ -11,7 +11,7 @@ const Title = ({ title, link, desc, content }) => {
                 <h2 className='text-[28px] md:text-[44px] lg:text-6xl font-medium font-kumbh text-white'>{desc}</h2>
             </div>
             {
-                link && content ? <NavLink to={`/${link}`} className='flex w-11/12 md:w-fit justify-center items-center rounded-xl md:py-[14px] md:px-5 py-[14px] px-5 lg:py-4 lg:px-6 bg-dark-8 border border-dark-15 font-inter md:text-sm lg:text-lg text-gray-60'>
+                link && content ? <NavLink to={`/${link}`} className='flex w-11/12 md:w-fit justify-center items-center rounded-xl md:py-[14px] md:px-5 py-[14px] px-5 lg:py-4 lg:px-6 bg-dark-8 border border-dark-15 font-inter md:text-sm lg:text-lg text-gray-60 whitespace-nowrap'>
                     <p>View All {content}</p>
                     <GoArrowUpRight size={20} color='yellow' />
                 </NavLink>

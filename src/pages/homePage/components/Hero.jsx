@@ -66,7 +66,7 @@ const Hero = () => {
                         Over 1,000 articles on emerging tech trends and breakthroughs.
                     </p>
                     <NavLink to='/resources' className="w-full lg:w-fit font-inter text-sm 2xl:text-lg text-gray-60 rounded-lg 2xl:rounded-xl border bg-dark-8 border-dark-15 flex justify-center items-center gap-2 py-4 px-5 2xl:py-4 2xl:px-6 ">
-                        <p>Explore Resources</p>
+                        <p className="whitespace-nowrap">Explore Resources</p>
                         <GoArrowUpRight color="yellow" size={24} />
 
                     </NavLink>

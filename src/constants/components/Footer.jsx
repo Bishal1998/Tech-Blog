@@ -7,7 +7,7 @@ import { GoArrowUpRight } from "react-icons/go";
 
 const Footer = () => {
     return (
-        <footer className='px-6 lg:px-20 w-full' >
+        <footer className='w-full px-6 py-6 lg:px-20 lg:py-16' >
             <div className='flex justify-between items-start font-inter gap-4 flex-wrap'>
                 <div className=''>
                     <p className='text-white text-base lg:text-xl font-medium'>Home</p>
@@ -108,8 +108,8 @@ const Footer = () => {
                             resourceFooter.map((item) => {
                                 const { id, title, link, isNew } = item;
                                 return (
-                                    <Link to={link} >
-                                        <div key={id} className='flex items-center p-2 border rounded-lg border-dark-15'>
+                                    <Link to={link} key={id} >
+                                        <div className='flex items-center p-2 border rounded-lg border-dark-15'>
                                             <p className='text-dark-40 lg:text-lg'>{title}</p>
                                             <div className='text-yellow-55'>
                                                 <GoArrowUpRight size={20} />

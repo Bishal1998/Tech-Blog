@@ -163,4 +163,25 @@ const testimonyItems = [
     },
 ]
 
-export { futureBlog, researchBlogs, filterPosts, testimonyItems }
+const revolutionItems = [
+    {
+        id: 1,
+        title: "Resource Access",
+        desc: "Visitors can access a wide range of resources, including ebooks, whitepapers, reports.",
+        link: "/"
+    },
+    {
+        id: 2,
+        title: "Community Forum",
+        desc: "Join our active community forum to discuss industry trends and collaborate with peers.",
+        link: "/"
+    },
+    {
+        id: 3,
+        title: "Tech Events",
+        desc: "Stay updated on upcoming tech events, webinars and conferences to enhance your knowledge.",
+        link: "/"
+    },
+]
+
+export { futureBlog, researchBlogs, filterPosts, testimonyItems, revolutionItems }

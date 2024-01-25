@@ -1,6 +1,7 @@
 import React from 'react'
 import { GoArrowUpRight } from "react-icons/go";
 import { Link } from 'react-router-dom';
+import { revolutionItems } from '../constants/data';
 
 const Revolution = () => {
     return (
@@ -48,33 +49,20 @@ const Revolution = () => {
             </div>
 
             <div className='rounded-xl bg-dark-8 border border-dark-15 p-2 flex flex-col lg:flex-row justify-between items-center gap-2 mt-12'>
-                <article className='w-full lg:w-1/3 rounded-lg border border-dark-15 bg-dark-10 p-7 space-y-2'>
-                    <div className='flex justify-between items-center'>
-                        <p className='text-lg font-inter font-semibold text-white'>Resource Access</p>
-                        <Link to="/" className='rounded-full bg-yellow-55 p-3'>
-                            <GoArrowUpRight size={20} color='black' />
-                        </Link>
-                    </div>
-                    <p className='text-gray-60 text-base font-inter'>Visitors can access a wide range of resources, including ebooks, whitepapers, reports.</p>
-                </article>
-                <article className='w-full lg:w-1/3 rounded-lg border border-dark-15 bg-dark-10 p-7 space-y-2'>
-                    <div className='flex justify-between items-center'>
-                        <p className='text-lg font-inter font-semibold text-white'>Resource Access</p>
-                        <Link to="/" className='rounded-full bg-yellow-55 p-3'>
-                            <GoArrowUpRight size={20} color='black' />
-                        </Link>
-                    </div>
-                    <p className='text-gray-60 text-base font-inter'>Visitors can access a wide range of resources, including ebooks, whitepapers, reports.</p>
-                </article>
-                <article className='w-full lg:w-1/3 rounded-lg border border-dark-15 bg-dark-10 p-7 space-y-2'>
-                    <div className='flex justify-between items-center'>
-                        <p className='text-lg font-inter font-semibold text-white'>Resource Access</p>
-                        <Link to="/" className='rounded-full bg-yellow-55 p-3'>
-                            <GoArrowUpRight size={20} color='black' />
-                        </Link>
-                    </div>
-                    <p className='text-gray-60 text-base font-inter'>Visitors can access a wide range of resources, including ebooks, whitepapers, reports.</p>
-                </article>
+                {
+                    revolutionItems.map((item) => {
+                        const { id, title, desc, link } = item;
+                        return <article key={id} className='w-full rounded-lg border border-dark-15 bg-dark-10 p-7 space-y-2'>
+                            <div className='flex justify-between items-center'>
+                                <p className='text-lg font-inter font-semibold text-white'>{title}</p>
+                                <Link to={link} className='rounded-full bg-yellow-55 p-3'>
+                                    <GoArrowUpRight size={20} color='black' />
+                                </Link>
+                            </div>
+                            <p className='text-gray-60 text-base font-inter'>{desc}</p>
+                        </article>
+                    })
+                }
             </div>
 
         </section>

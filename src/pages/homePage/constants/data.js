@@ -158,7 +158,7 @@ const testimonyItems = [
         img: "https://images.pexels.com/photos/842980/pexels-photo-842980.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         name: "Diego Lopez",
         add: "Barcelona, Spain",
-        rataing: "5",
+        rating: "5",
         content: "The ebooks on renewable energy strategies have given me the insights I needed to pivot our startup toward sustainability."
     },
 ]

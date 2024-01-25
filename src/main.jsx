@@ -4,15 +4,12 @@ import App from './App.jsx'
 import './index.css'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Footer, Header } from './constants/components/index.jsx'
-import { Contact, Home, News, Podcast, Resource } from './pages/index.jsx'
+import { Contact, Home, News, Podcast, Resource, Signup } from './pages/index.jsx'
 import { Provider, useDispatch } from 'react-redux';
 import store from './store/store.js'
 import authService from './appwrite/auth.js';
 import { login, logout } from './store/authSlice.js'
 import { Revolution } from "./pages/homePage/components"
-import Signup from './pages/Signup/Signup.jsx'
-import Login from './pages/Login/Login.jsx'
-
 const Layout = () => {
 
   const [loading, setLoading] = useState(true);
@@ -71,8 +68,8 @@ const router = createBrowserRouter([
     path: '/signup',
     element: <Signup />
   }, {
-    path: '/login',
-    element: <Login />
+    path: "/login",
+    element: <Signup />
   }
 ])
 

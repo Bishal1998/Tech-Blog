@@ -112,4 +112,55 @@ const filterPosts = [
     }
 ]
 
-export { futureBlog, researchBlogs, filterPosts }
+const testimonyItems = [
+    {
+        id: 1,
+        img: "https://images.pexels.com/photos/3764119/pexels-photo-3764119.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        name: "Sarah Thompson",
+        add: "San Francisco, USA",
+        rataing: "5",
+        content: "The ebooks on AI in education have been a game-changer for my research. They provide in-depth insights and case studies that are invaluable for staying updated."
+    },
+    {
+        id: 2,
+        img: "https://images.pexels.com/photos/1080213/pexels-photo-1080213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        name: "Raj Patel",
+        add: "Mumbai, India",
+        rataing: "5",
+        content: "The whitepapers on renewable energy strategies have greatly influenced my work. They offer detailed data and analysis."
+    },
+    {
+        id: 3,
+        img: "https://images.pexels.com/photos/2616951/pexels-photo-2616951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        name: "Emily Adams",
+        add: "London, UK",
+        rataing: "5",
+        content: "The AI in healthcare reports have been an essential resource for our hospital. They highlight the latest innovations and best practices, improving patient care."
+    },
+    {
+        id: 4,
+        img: "https://images.pexels.com/photos/2232981/pexels-photo-2232981.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        name: "Alan Jackson",
+        add: "Houston, USA",
+        rataing: "5",
+        content: "The reports on space mining prospects have fueled my passion for space exploration. They provide a comprehensive view."
+    },
+    {
+        id: 5,
+        img: "https://images.pexels.com/photos/2804977/pexels-photo-2804977.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        name: "Jessica Miller",
+        add: "Boston, USA",
+        rataing: "5",
+        content: "The research papers on genomic breakthroughs have been a goldmine of information. They've shaped the direction of my research in genomics."
+    },
+    {
+        id: 6,
+        img: "https://images.pexels.com/photos/842980/pexels-photo-842980.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        name: "Diego Lopez",
+        add: "Barcelona, Spain",
+        rataing: "5",
+        content: "The ebooks on renewable energy strategies have given me the insights I needed to pivot our startup toward sustainability."
+    },
+]
+
+export { futureBlog, researchBlogs, filterPosts, testimonyItems }

@@ -10,6 +10,8 @@ import store from './store/store.js'
 import authService from './appwrite/auth.js';
 import { login, logout } from './store/authSlice.js'
 import { Revolution } from "./pages/homePage/components"
+import Signup from './pages/Signup/Signup.jsx'
+import Login from './pages/Login/Login.jsx'
 
 const Layout = () => {
 
@@ -65,6 +67,12 @@ const router = createBrowserRouter([
         element: <Contact />
       },
     ]
+  }, {
+    path: '/signup',
+    element: <Signup />
+  }, {
+    path: '/login',
+    element: <Login />
   }
 ])
 

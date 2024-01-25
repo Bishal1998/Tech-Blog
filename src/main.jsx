@@ -9,7 +9,6 @@ import { Provider, useDispatch } from 'react-redux';
 import store from './store/store.js'
 import authService from './appwrite/auth.js';
 import { login, logout } from './store/authSlice.js'
-import '@smastrom/react-rating/style.css'
 
 const Layout = () => {
 

@@ -9,6 +9,7 @@ import { Provider, useDispatch } from 'react-redux';
 import store from './store/store.js'
 import authService from './appwrite/auth.js';
 import { login, logout } from './store/authSlice.js'
+import { Revolution } from "./pages/homePage/components"
 
 const Layout = () => {
 
@@ -32,6 +33,7 @@ const Layout = () => {
   return !loading ? <>
     <Header />
     <Outlet />
+    <Revolution />
     <Footer />
   </> :
     <h2 className='font-kumbh text-3xl text-center text-gray-60'>Loading......</h2>

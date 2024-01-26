@@ -5,5 +5,6 @@ import GroupImage from "./GroupImage";
 import Input from "./Input";
 import Submit from "./Submit";
 import Google from "./Google";
+import Headline from "./Headline";
 
-export { Navbar, Header, Footer, GroupImage, Input, Submit, Google }
+export { Navbar, Header, Footer, GroupImage, Input, Submit, Google, Headline }

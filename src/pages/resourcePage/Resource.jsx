@@ -1,8 +1,11 @@
 import React from 'react'
+import { SingleNews } from "../index"
 
 const Resource = () => {
     return (
-        <div>Resource</div>
+        <div>
+            <SingleNews />
+        </div>
     )
 }
 

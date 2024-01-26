@@ -40,6 +40,9 @@ export default {
           99: "#FCFCFD",
         },
       },
+      backgroundImage: {
+        'gradient-180': 'linear-gradient(180deg, var(--tw-gradient-stops))'
+      },
       fontFamily: {
         "kumbh": ['Kumbh Sans', 'sans-serif'],
         "inter": ['Inter', "sans-serif"]

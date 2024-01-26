@@ -4,5 +4,6 @@ import Resource from './resourcePage/Resource';
 import Podcast from './podcastPage/Podcast';
 import Contact from './contactPage/Contact'
 import Signup from './Signup/Signup';
+import SingleNews from './singleNews/SingleNews';
 
-export { Home, News, Resource, Podcast, Contact, Signup }
+export { Home, News, Resource, Podcast, Contact, Signup, SingleNews }

@@ -30,7 +30,3 @@ const featuredVideos = [
 ]
 
 export { featuredVideos }
-
-{/* 
-<iframe width="1234" height="694" src="https://www.youtube.com/embed/ERyzAnU62hU" title="Nature: Ladybugs in California" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
-*/}

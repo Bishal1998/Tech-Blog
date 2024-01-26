@@ -1,6 +1,7 @@
 import React from 'react'
 import { FilterPosts } from "../homePage/components"
 import { Title } from '../homePage/constants/components'
+import { Videos } from './components'
 
 const News = () => {
     return (
@@ -10,6 +11,7 @@ const News = () => {
                 link="news"
                 desc="Visual Insights for the Modern Viewer"
                 content="News" />
+            <Videos />
         </section>
     )
 }

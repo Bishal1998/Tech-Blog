@@ -29,4 +29,56 @@ const featuredVideos = [
     },
 ]
 
-export { featuredVideos }
+const newsItems = [
+    {
+        id: 1,
+        title: "A Decisive Victory for Progressive Policies",
+        category: "Politics",
+        desc: "World leaders gathered at the Global Climate Summit to discuss urgent climate action, emissions reductions, and renewable energy targets.",
+        likeCount: 2200,
+        commentCount: 60,
+        link: "/",
+        publishedDate: "October 10, 2023",
+        author: "Jane Smith",
+        featuredImg: "https://images.pexels.com/photos/3808168/pexels-photo-3808168.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+        id: 2,
+        title: "Tech Giants Unveil Cutting-Edge AI Innovations",
+        category: "Technology",
+        desc: "World leaders gathered at the Global Climate Summit to discuss urgent climate action, emissions reductions, and renewable energy targets.",
+        likeCount: 6000,
+        commentCount: 92,
+        link: "/",
+        publishedDate: "October 10, 2023",
+        author: "Jane Smith",
+        featuredImg: "https://images.pexels.com/photos/9598698/pexels-photo-9598698.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+        id: 3,
+        title: "COVID-19 Variants",
+        category: "Health",
+        desc: "World leaders gathered at the Global Climate Summit to discuss urgent climate action, emissions reductions, and renewable energy targets.",
+        likeCount: 10000,
+        commentCount: 124,
+        link: "/",
+        publishedDate: "October 10, 2023",
+        author: "Jane Smith",
+        featuredImg: "https://images.pexels.com/photos/4031818/pexels-photo-4031818.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+        id: 4,
+        title: "Global Climate Summit Addresses Urgent Climate Action",
+        category: "Environment",
+        desc: "World leaders gathered at the Global Climate Summit to discuss urgent climate action, emissions reductions, and renewable energy targets.",
+        likeCount: 14000,
+        commentCount: 204,
+        link: "/",
+        publishedDate: "October 10, 2023",
+        author: "Jane Smith",
+        featuredImg: "https://images.pexels.com/photos/2990650/pexels-photo-2990650.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+
+]
+
+export { featuredVideos, newsItems }

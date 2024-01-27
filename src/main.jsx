@@ -7,35 +7,15 @@ import { Footer, Header } from './constants/components/index.jsx'
 import { Contact, Home, News, Podcast, Resource, Signup } from './pages/index.jsx'
 import { Provider, useDispatch } from 'react-redux';
 import store from './store/store.js'
-import authService from './appwrite/auth.js';
-import { login, logout } from './store/authSlice.js'
 import { Revolution } from "./pages/homePage/components"
 const Layout = () => {
 
-  const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    authService.getCurrentUser()
-      .then((userData) => {
-        if (userData) {
-          dispatch(login({ userData }))
-        } else {
-          dispatch(logout())
-        }
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [])
-
-  return !loading ? <>
+  return <>
     <Header />
     <Outlet />
     <Revolution />
     <Footer />
-  </> :
-    <h2 className='font-kumbh text-3xl text-center text-gray-60'>Loading......</h2>
+  </>
 }
 
 const router = createBrowserRouter([
@@ -48,7 +28,7 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: 'news',
+        path: 'blogs',
         element: <News />
       },
       {

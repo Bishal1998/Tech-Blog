@@ -11,10 +11,10 @@ const FilterPosts = () => {
   return (
     <section>
       <Title
-        title={pathname === "/" ? "A Knowledge Treasure Trove" : pathname === "/news" ? "Welcome to Our News Hub" : null}
-        link={pathname === "/" ? "blogs" : pathname === "/news" ? "news" : null}
-        desc={pathname === "/" ? "Explore FutureTech's In-Depth Blog Posts" : pathname === "/news" ? "Discover the World of Headlines" : null}
-        content={pathname === "/" ? "Blogs" : pathname === "/news" ? "News" : null}
+        title={pathname === "/" ? "A Knowledge Treasure Trove" : pathname === "/blogs" ? "Welcome to Our News Hub" : null}
+        link={pathname === "/" ? "blogs" : pathname === "/blogs" ? "news" : null}
+        desc={pathname === "/" ? "Explore FutureTech's In-Depth Blog Posts" : pathname === "/blogs" ? "Discover the World of Headlines" : null}
+        content={pathname === "/" ? "Blogs" : pathname === "/blogs" ? "Blogs" : null}
       />
       <div className="w-full px-6 py-6 lg:px-20 lg:py-16 flex justify-between gap-4 overflow-x-scroll xl:overflow-hidden">
         <p

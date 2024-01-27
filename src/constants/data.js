@@ -8,18 +8,13 @@ const navItems = [
     },
     {
         id: 2,
-        title: "News",
-        link: "/news",
+        title: "Blogs",
+        link: "/blogs",
     },
     {
         id: 3,
-        title: "Podcasts",
-        link: "/podcasts",
-    },
-    {
-        id: 4,
-        title: "Resources",
-        link: "/resources",
+        title: "Contact Us",
+        link: "/contact",
     },
 ]
 

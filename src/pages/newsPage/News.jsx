@@ -17,9 +17,9 @@ const News = () => {
             <MultipleNews />
             <FilterPosts />
             <Title title="Featured Videos"
-                link="news"
+                link="blogs"
                 desc="Visual Insights for the Modern Viewer"
-                content="News" />
+                content="Blogs" />
             <Videos />
         </section>
     )

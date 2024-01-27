@@ -48,9 +48,9 @@ const Navbar = () => {
                         })
                     }
                 </div>
-                <Link to='/contact' className='hidden lg:flex'>
-                    <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl p-4'>
-                        Contact Us
+                <Link to='/login' className='hidden lg:flex'>
+                    <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>
+                        Login
                     </button>
                 </Link>
 
@@ -69,9 +69,9 @@ const Navbar = () => {
                                         return <NavLink to={link} key={id} className={({ isActive }) => isActive ? ' text-white  mx-auto bg-dark-8 rounded-xl p-4 ' : 'p-4'} >{title}</NavLink>
                                     })
                                 }
-                                <Link to='/contact' className='lg:hidden'>
-                                    <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl p-4'>
-                                        Contact Us
+                                <Link to='/login' className='lg:hidden'>
+                                    <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>
+                                        Login
                                     </button>
                                 </Link>
                             </div>

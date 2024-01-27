@@ -10,7 +10,6 @@ const Home = () => {
             <FilterPosts />
             <Resources />
             <Testimonials />
-            <Revolution />
         </div>
     )
 }

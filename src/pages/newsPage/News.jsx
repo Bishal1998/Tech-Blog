@@ -6,9 +6,6 @@ import { Headline, NewsComp } from "../../constants/components"
 import FirstNews from './components/FirstNews'
 import { newsItems } from './data'
 
-
-console.log(newsItems[0])
-
 const News = () => {
     return (
         <section>

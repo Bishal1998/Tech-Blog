@@ -7,6 +7,8 @@ import { Footer, Header } from './constants/components/index.jsx'
 import { Contact, Home, News, Podcast, Resource, Signup } from './pages/index.jsx'
 import { Provider, useDispatch } from 'react-redux';
 import store from './store/store.js'
+import { persistor } from "./store/store.js"
+import { PersistGate } from 'redux-persist/integration/react'
 import { Revolution } from "./pages/homePage/components"
 const Layout = () => {
 
@@ -55,8 +57,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <PersistGate persistor={persistor}>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </PersistGate>
   </React.StrictMode>,
 )

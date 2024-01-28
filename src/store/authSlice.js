@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     currentUser: null,
     error: null,
-    loading: false
+    loading: false,
+    success: false,
 }
 
 const authSlice = createSlice({
@@ -12,16 +13,19 @@ const authSlice = createSlice({
     reducers: {
         signInStart: (state) => {
             state.loading = true,
-                state.error = null;
+                state.error = null,
+                state.success = false
         },
         signInSuccess: (state, action) => {
             state.currentUser = action.payload,
                 state.loading = false,
-                state.error = null;
+                state.error = null,
+                state.success = true
         },
         signInFailure: (state, action) => {
             state.loading = false,
-                state.error = action.payload
+                state.error = action.payload,
+                state.success = false
         }
     }
 })

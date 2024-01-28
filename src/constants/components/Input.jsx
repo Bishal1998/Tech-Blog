@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Input = ({ title, type, name, handleChange }) => {
+const Input = ({ title, type, name, handleChange, value }) => {
     return (
         title &&
         <div className='w-full flex flex-col items-center'>
@@ -13,6 +13,7 @@ const Input = ({ title, type, name, handleChange }) => {
                     placeholder={title}
                     name={name}
                     onChange={(e) => handleChange(e)}
+                    value={value}
                     className='w-full border border-dark-15 bg-dark-15 outline-none shadow-[0_0_0_4px_#191919] p-5 rounded-lg font-inter text-dark-40 text-lg mb-4'
                 />
             </div>

@@ -2,7 +2,7 @@ import express from "express";
 import { configDotenv } from "dotenv";
 import connectToDb from "./db/index.js";
 import userRoutes from "./routes/User.js";
-import signupRoutes from "./routes/Signup.js";
+import authRoutes from "./routes/Auth.js";
 import { errorMiddleware } from "./middleware/Middleware.js";
 
 configDotenv();
@@ -14,7 +14,7 @@ app.use(express.json());
 
 
 app.use("/api/user", userRoutes);
-app.use("/api/auth", signupRoutes);
+app.use("/api/auth", authRoutes);
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {

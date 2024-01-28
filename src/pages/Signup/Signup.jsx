@@ -58,6 +58,34 @@ const Signup = () => {
         }
     }
 
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        if (!formData.email || !formData.password || formData.email === "" || formData.password === "") {
+            setErrorMessage("All Fields are required");
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const res = await axios.post("/api/auth/signin", formData);
+            if (res.statusText === "OK") {
+                setSuccessMessage(res.data.message);
+                navigate("/");
+                setFormData({
+                    username: "",
+                    email: "",
+                    password: ""
+                })
+            }
+            setLoading(false);
+        } catch (error) {
+            setErrorMessage("Email or Password is not valid")
+            setLoading(false);
+        }
+    }
+
 
     return (
         <section className='flex flex-col justify-center items-center gap-8 w-screen h-screen p-4'>
@@ -68,7 +96,7 @@ const Signup = () => {
             {
                 successMessage && <p className='py-1 px-2 lg:py-[6px] lg:px-[10px] bg-yellow-55 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit'>{successMessage}</p>
             }
-            <form className='flex flex-col gap-2 w-full items-center justify-center' onSubmit={handleSubmit}>
+            <form className='flex flex-col gap-2 w-full items-center justify-center' onSubmit={pathname === "/login" ? handleLogin : handleSubmit}>
                 {
                     !login && <Input title="Enter Username" type="text" name="username" handleChange={handleChange} value={formData.username} />
                 }

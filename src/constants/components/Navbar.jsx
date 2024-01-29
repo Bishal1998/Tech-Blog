@@ -10,7 +10,6 @@ const Navbar = () => {
     const [navActive, setNavActive] = useState(false);
     const [profileActive, setProfileActive] = useState(false);
     const { currentUser } = useSelector(state => state.auth)
-    console.log(currentUser)
 
     /* Exit Mobile Nav on Click outside of Nav */
 

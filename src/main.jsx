@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Footer, Header } from './constants/components/index.jsx'
-import { Contact, Home, News, Podcast, Resource, Signup } from './pages/index.jsx'
+import { Contact, Dashboard, Home, News, Podcast, Resource, Signup } from './pages/index.jsx'
 import { Provider, useDispatch } from 'react-redux';
 import store from './store/store.js'
 import { persistor } from "./store/store.js"
@@ -44,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'contact',
         element: <Contact />
+      },
+      {
+        path: 'dashboard',
+        element: <Dashboard />
       },
     ]
   }, {

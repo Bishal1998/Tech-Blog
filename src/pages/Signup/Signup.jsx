@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Google, Input, Submit } from '../../constants/components'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { signInStart, signInSuccess, signInFailure } from '../../store/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,7 +18,7 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const { loading, error: errorMessage, success: successMessage } = useSelector(state => state.auth);
+    const { loading, error: errorMessage, success: successMessage, currentUser } = useSelector(state => state.auth);
 
     useEffect(() => {
         if (pathname.toLocaleLowerCase() === "/login") {
@@ -81,7 +81,7 @@ const Signup = () => {
     }
 
 
-    return (
+    return currentUser ? <Navigate to="/dashboard" /> : (
         <section className='flex flex-col justify-center items-center gap-8 w-screen h-screen p-4'>
             <h2 className='text-yellow-55 font-kumbh text-6xl font-medium'>{login ? "Login" : "Signup"}</h2>
             {

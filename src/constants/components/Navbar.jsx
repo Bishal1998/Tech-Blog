@@ -3,10 +3,14 @@ import { DesktopLogo, MobileLogo, LaptopLogo } from '../../assets/Logo'
 import { navItems } from '../data'
 import { Link, NavLink } from 'react-router-dom'
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
 
     const [navActive, setNavActive] = useState(false);
+    const [profileActive, setProfileActive] = useState(false);
+    const { currentUser } = useSelector(state => state.auth)
+    console.log(currentUser)
 
     /* Exit Mobile Nav on Click outside of Nav */
 
@@ -21,6 +25,10 @@ const Navbar = () => {
 
     document.addEventListener('click', handleClick);
     document.removeEventListener('click', handleClick) */
+
+    const handleProfileClick = () => {
+        setProfileActive((prev) => !prev)
+    }
 
     return (
         <section className='bg-dark-10 p-4'>
@@ -48,11 +56,35 @@ const Navbar = () => {
                         })
                     }
                 </div>
-                <Link to='/login' className='hidden lg:flex'>
-                    <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>
-                        Login
-                    </button>
-                </Link>
+                <div className='hidden lg:flex'>
+                    {
+                        currentUser ? (
+                            <img src={currentUser.profilePicture} alt={currentUser.username} className='rounded-full w-12 h-12 cursor-pointer' onClick={handleProfileClick} />
+                        ) : (
+                            <Link to='/login'>
+                                <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>
+                                    Login
+                                </button>
+                            </Link>
+                        )
+                    }
+                </div>
+
+                {
+                    profileActive && <div className='rounded-xl bg-dark-10 border border-dark-15 p-5 gap-4 absolute top-36 right-20'>
+                        <div className='font-inter text-sm lg:text-base 2xl:text-lg text-gray-60 space-y-2'>
+                            <p>{currentUser.username}</p>
+                            <p>{currentUser.email}</p>
+                        </div>
+                        <div className='w-full h-1 border-t border-dark-15' />
+                        <div className='font-inter text-lg lg:text-base 2xl:text-lg text-white font-medium space-y-2 pt-2'>
+                            <Link to={'/dashboard?tab=profile'}>Profile</Link>
+                            <p className='cursor-pointer'>Log Out</p>
+                        </div>
+                    </div>
+                }
+
+
 
                 {/* mobile menu overlay */}
                 {
@@ -69,17 +101,34 @@ const Navbar = () => {
                                         return <NavLink to={link} key={id} className={({ isActive }) => isActive ? ' text-white  mx-auto bg-dark-8 rounded-xl p-4 ' : 'p-4'} >{title}</NavLink>
                                     })
                                 }
-                                <Link to='/login' className='lg:hidden'>
-                                    <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>
-                                        Login
-                                    </button>
-                                </Link>
+
+                                <div className='lg:hidden'>
+                                    {
+                                        currentUser ? (
+                                            <div className='flex flex-col justify-center items-center gap-4'>
+                                                <div className='w-full border-t border-dark-15 h-1' />
+                                                <NavLink to='/dashboard?tab=profile' className={({ isActive }) => isActive ? ' text-white  mx-auto bg-dark-8 rounded-xl p-4 text-lg   ' : 'p-4 text-lg'} >Profile</NavLink>
+                                                <Link to='/login'>
+                                                    <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>
+                                                        Logout
+                                                    </button>
+                                                </Link>
+                                            </div>
+                                        ) : (
+                                            <Link to='/login'>
+                                                <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>
+                                                    Login
+                                                </button>
+                                            </Link>
+                                        )
+                                    }
+                                </div>
                             </div>
                         </nav>
                     )
                 }
-            </nav>
-        </section>
+            </nav >
+        </section >
     )
 }
 export default Navbar

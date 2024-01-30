@@ -18,12 +18,12 @@ const Dashboard = () => {
     }, [search])
 
     return currentUser ?
-        <section className='flex justify-between'>
-            <div className='hidden lg:flex flex-col w-1/5 bg-dark-10 min-h-screen py-2 px-4'>
+        <section className='flex justify-center'>
+            <div className='hidden absolute left-0 lg:flex flex-col w-1/5 bg-dark-10 min-h-screen py-2 px-4'>
                 <Sidebar />
             </div>
             {tab === "profile" &&
-                <div className='w-1/2'>
+                <div className='w-full lg:w-3/4 lg:ml-auto lg:mr-20'>
                     <Profile />
                 </div>}
         </section> :

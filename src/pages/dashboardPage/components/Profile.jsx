@@ -1,18 +1,40 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Input } from '../../../constants/components'
 import { useSelector } from 'react-redux'
 
 const Profile = () => {
 
     const { currentUser } = useSelector(state => state.auth)
+    const [imageFile, setImageFile] = useState(null);
+    const [imageFileUrl, setImageFileUrl] = useState(null);
+    const imagePickerRef = useRef();
+
+    const handleImageChanger = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImageFile(file)
+            setImageFileUrl(URL.createObjectURL(file)) // creating temporary url for image
+        }
+    }
+
+    useEffect(() => {
+        if (imageFile) {
+            uploadImage();
+        }
+    }, [imageFile])
+
+    const uploadImage = async () => {
+        console.log("uploadig")
+    }
 
     return (
         <section className='w-full pt-4 flex flex-col justify-center items-center'>
             <h2 className='font-medium text-white font-inter text-4xl'>Profile</h2>
 
             <div className='min-h-screen w-[90%] flex flex-col items-center justify-start mt-12'>
-                <img src={currentUser.profilePicture} alt={currentUser.username} className='rounded-full w-40 h-40 object-cover border-[10px] border-dark-30 self-center cursor-pointer' />
                 <form className='w-full flex flex-col items-center'>
+                    <img src={imageFileUrl || currentUser.profilePicture} alt={currentUser.username} className='rounded-full w-40 h-40 object-cover border-[10px] border-dark-30 self-center cursor-pointer' onClick={() => imagePickerRef.current.click()} />
+                    <input type="file" accept='image/*' onChange={handleImageChanger} ref={imagePickerRef} className='hidden' />
                     <Input title="Username" type="email" name="username" value={currentUser.username} />
                     <Input title="Email" type="email" name="email" value={currentUser.email} />
                     <Input title="Password" type="text" name="password" value={currentUser.password} />

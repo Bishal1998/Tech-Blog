@@ -1,19 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Input } from '../../../constants/components'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 import app from '../../../Firebase'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import axios from 'axios'
+import { updateFailure, updateStart, updateSuccess } from '../../../store/authSlice'
 
 const Profile = () => {
 
-    const { currentUser } = useSelector(state => state.auth)
+    const { currentUser, loading, success } = useSelector(state => state.auth)
     const [imageFile, setImageFile] = useState(null);
     const [imageFileUrl, setImageFileUrl] = useState(null);
     const [imageFileUploadStatus, setImageFileUploadStatus] = useState(null);
     const [imageFileUploadError, setImageFileUploadError] = useState(null);
+    const [valueChange, setValueChange] = useState(null);
     const imagePickerRef = useRef();
+    const dispatch = useDispatch();
+
+
+    const [formData, setFormData] = useState({
+        profilePicture: "",
+        username: "",
+        email: "",
+        password: ""
+    });
 
     const handleImageChanger = (e) => {
         const file = e.target.files[0];
@@ -51,17 +63,44 @@ const Profile = () => {
                 setImageFileUrl(null);
             },
             () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => setImageFileUrl(downloadURL))
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImageFileUrl(downloadURL);
+                    setFormData({ ...formData, profilePicture: downloadURL });
+                })
             }
         )
+    }
+
+    const handleChange = (e) => {
+        setValueChange(true)
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+
+        if (Object.keys(formData).length === 0) {
+            return;
+        }
+
+        try {
+            dispatch(updateStart())
+            const res = await axios.put(`/api/user/update/${currentUser._id}`, formData);
+
+            if (res.status === 200) {
+                dispatch(updateSuccess(res.data))
+            }
+
+        } catch (error) {
+            dispatch(updateFailure(error.message))
+        }
     }
 
     return (
         <section className='w-full pt-4 flex flex-col justify-center items-center'>
             <h2 className='font-medium text-white font-inter text-4xl'>Profile</h2>
-
             <div className='min-h-screen w-[90%] flex flex-col items-center justify-start mt-12'>
-                <form className='w-full flex flex-col items-center gap-4'>
+                <form className='w-full flex flex-col items-center gap-4' onSubmit={handleSubmit}>
 
                     <div className='relative'>
                         <img src={imageFileUrl || currentUser.profilePicture} alt={currentUser.username} className={`rounded-full w-40 h-40 object-cover border-[10px] border-dark-30 self-center cursor-pointer ${imageFileUploadStatus && imageFileUploadStatus < 100 && "opacity-60"}`} onClick={() => imagePickerRef.current.click()} />
@@ -81,14 +120,16 @@ const Profile = () => {
                                 }} />
                             )
                         }
+
                     </div>
+                    {success && <p className='py-1 px-2 lg:py-[6px] lg:px-[10px] bg-yellow-55 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit'>User Updated Successfully</p>}
                     {
                         imageFileUploadError && <p className='py-1 px-2 lg:py-[6px] lg:px-[10px] bg-red-600 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit'>{imageFileUploadError}</p>
                     }
                     <input type="file" accept='image/*' onChange={handleImageChanger} ref={imagePickerRef} className='hidden' />
-                    <Input title="Username" type="email" name="username" value={currentUser.username} />
-                    <Input title="Email" type="email" name="email" value={currentUser.email} />
-                    <Input title="Password" type="text" name="password" value={currentUser.password} />
+                    <Input title="Username" type="username" name="username" value={currentUser.username} handleChange={handleChange} valueChange={true} />
+                    <Input title="Email" type="email" name="email" value={currentUser.email} handleChange={handleChange} valueChange={true} />
+                    <Input title="Password" type="text" name="password" value={currentUser.password} handleChange={handleChange} valueChange={true} />
                     <button className='w-full sm:w-[500px] p-5 rounded-lg border-dark-15 bg-yellow-55 font-inter text-xl text-dark-8 hover:bg-yellow-60 font-medium' type='submit'>
                         Update
                     </button>

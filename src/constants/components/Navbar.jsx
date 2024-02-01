@@ -58,7 +58,7 @@ const Navbar = () => {
                 <div className='hidden lg:flex'>
                     {
                         currentUser ? (
-                            <img src={currentUser.profilePicture} alt={currentUser.username} className='rounded-full w-12 h-12 cursor-pointer' onClick={handleProfileClick} />
+                            <img src={currentUser.profilePicture} alt={currentUser.username} className='rounded-full w-12 h-12 cursor-pointer object-cover' onClick={handleProfileClick} />
                         ) : (
                             <Link to='/login'>
                                 <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>

@@ -6,11 +6,12 @@ import app from '../../../Firebase'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import axios from 'axios'
-import { updateFailure, updateStart, updateSuccess } from '../../../store/authSlice'
+import { updateFailure, updateStart, updateSuccess, deleteStart, deleteSuccess, deleteFailure } from '../../../store/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
 
-    const { currentUser, loading, success } = useSelector(state => state.auth)
+    const { currentUser, loading, success, error } = useSelector(state => state.auth)
     const [imageFile, setImageFile] = useState(null);
     const [imageFileUrl, setImageFileUrl] = useState(null);
     const [imageFileUploadStatus, setImageFileUploadStatus] = useState(null);
@@ -19,6 +20,7 @@ const Profile = () => {
     const imagePickerRef = useRef();
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         profilePicture: "",
@@ -96,6 +98,26 @@ const Profile = () => {
         }
     }
 
+    const handleDeleteUser = async (e) => {
+        e.preventDefault();
+        dispatch(deleteStart());
+
+        try {
+
+            const res = await axios.delete(`/api/user/delete/${currentUser._id}`)
+
+            if (res.status === 200) {
+                dispatch(deleteSuccess(res.data))
+            }
+
+            navigate("/")
+
+
+        } catch (error) {
+            dispatch(deleteFailure(error.message))
+        }
+    }
+
     return (
         <section className='w-full pt-4 flex flex-col justify-center items-center'>
             <h2 className='font-medium text-white font-inter text-4xl'>Profile</h2>
@@ -135,9 +157,12 @@ const Profile = () => {
                     </button>
                 </form>
                 <div className='w-[90%] sm:w-[500px] py-4 flex justify-between items-center font-inter font-medium text-lg text-dark-35'>
-                    <p className='cursor-pointer'>Delete Account</p>
+                    <p className='cursor-pointer' onClick={handleDeleteUser}>Delete Account</p>
                     <p className='cursor-pointer'>Sign Out</p>
                 </div>
+                {
+                    error && <p className='py-1 px-2 lg:py-[6px] lg:px-[10px] bg-red-600 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit'>{error}</p>
+                }
             </div>
         </section>
     )

@@ -28,6 +28,13 @@ const Sidebar = () => {
 
     return (
         <section className='hidden lg:flex flex-col justify-between items-center text-white gap-4'>
+            {
+                currentUser.isAdmin &&
+                <Link to={'/dashboard?tab=create-post'} className='bg-dark-15 border border-dark-15 px-2 gap-5 2xl:px-16 py-3 rounded-xl flex items-center 2xl:gap-7 w-full hover:bg-dark-20 cursor-pointer'>
+                    <IoLogOutOutline size={30} />
+                    <p className='font-medium whitespace-nowrap'>Create a Post</p>
+                </Link>
+            }
             <Link to='/dashboard?tab=profile' className='bg-dark-15 border border-dark-15 px-2 gap-2 2xl:px-16 py-3 rounded-xl flex justify-between items-center w-full hover:bg-dark-20 cursor-pointer'>
                 <FaUser size={24} />
                 <p className='font-medium'>Profile</p>

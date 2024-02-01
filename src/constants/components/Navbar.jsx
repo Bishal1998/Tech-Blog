@@ -124,6 +124,10 @@ const Navbar = () => {
                                             <div className='flex flex-col justify-center items-center gap-4'>
                                                 <div className='w-full border-t border-dark-15 h-1' />
                                                 <NavLink to='/dashboard?tab=profile' className={({ isActive }) => isActive ? ' text-white  mx-auto bg-dark-8 rounded-xl p-4 text-lg   ' : 'p-4 text-lg'} >Profile</NavLink>
+                                                {
+                                                    currentUser.isAdmin && <NavLink to='/dashboard?tab=create-post' className={({ isActive }) => isActive ? ' text-white  mx-auto bg-dark-8 rounded-xl p-4 text-lg   ' : 'p-4 text-lg'} >Create Post</NavLink>
+
+                                                }
                                                 <Link to='/login' onClick={handleSignOut}>
                                                     <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>
                                                         Logout

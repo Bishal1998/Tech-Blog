@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { Profile, Sidebar } from './components';
+import { CreatePost, Profile, Sidebar } from './components';
 
 const Dashboard = () => {
 
@@ -17,15 +17,23 @@ const Dashboard = () => {
         }
     }, [search])
 
+
     return currentUser ?
-        <section className='flex justify-center'>
+        <section className='flex justify-center min-h-screen h-full'>
             <div className='hidden absolute left-0 lg:flex flex-col w-1/5 bg-dark-10 min-h-screen py-2 px-4'>
                 <Sidebar />
             </div>
             {tab === "profile" &&
                 <div className='w-full lg:w-3/4 lg:ml-auto lg:mr-20'>
                     <Profile />
-                </div>}
+                </div>
+            }
+            {
+                tab === "create-post" &&
+                <div className='w-full lg:w-3/4 lg:ml-auto lg:mr-20'>
+                    <CreatePost />
+                </div>
+            }
         </section> :
         <Navigate to="/signup" />
 

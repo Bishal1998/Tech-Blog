@@ -43,7 +43,6 @@ const Signup = () => {
             const res = await axios.post("/api/auth/signup", formData);
             if (res.statusText === "OK") {
                 dispatch(signInSuccess(res.data));
-                navigate("/login");
                 setFormData({
                     username: "",
                     email: "",
@@ -68,7 +67,6 @@ const Signup = () => {
             const res = await axios.post("/api/auth/signin", formData);
             if (res.statusText === "OK") {
                 dispatch(signInSuccess(res.data));
-                navigate("/");
                 setFormData({
                     username: "",
                     email: "",
@@ -81,7 +79,7 @@ const Signup = () => {
     }
 
 
-    return currentUser ? <Navigate to="/dashboard" /> : (
+    return currentUser ? <Navigate to="/dashboard?tab=profile" /> : (
         <section className='flex flex-col justify-center items-center gap-8 w-screen h-screen p-4'>
             <h2 className='text-yellow-55 font-kumbh text-6xl font-medium'>{login ? "Login" : "Signup"}</h2>
             {

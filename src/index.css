@@ -9,3 +9,18 @@
         background-color: #141414;
     }
 }
+
+.ql-toolbar.ql-snow,
+.ql-container.ql-snow {
+    border: 1px solid #262626;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    padding: 8px;
+    font-size: 1.05rem;
+    color: white;
+}
+
+.ql-editor.ql-blank::before {
+    color: grey;
+    font-style: normal;
+}

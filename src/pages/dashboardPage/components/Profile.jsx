@@ -6,7 +6,7 @@ import app from '../../../Firebase'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import axios from 'axios'
-import { updateFailure, updateStart, updateSuccess, deleteStart, deleteSuccess, deleteFailure } from '../../../store/authSlice'
+import { updateFailure, updateStart, updateSuccess, deleteStart, deleteSuccess, deleteFailure, signOutFailure, signOutSuccess } from '../../../store/authSlice'
 import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
@@ -118,6 +118,20 @@ const Profile = () => {
         }
     }
 
+    const handleSignOut = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post("/api/user/signout")
+            console.log(res)
+            if (res.status === 200) {
+                dispatch(signOutSuccess());
+            }
+
+        } catch (error) {
+            dispatch(signOutFailure(error.message))
+        }
+    }
+
     return (
         <section className='w-full pt-4 flex flex-col justify-center items-center'>
             <h2 className='font-medium text-white font-inter text-4xl'>Profile</h2>
@@ -158,7 +172,7 @@ const Profile = () => {
                 </form>
                 <div className='w-[90%] sm:w-[500px] py-4 flex justify-between items-center font-inter font-medium text-lg text-dark-35'>
                     <p className='cursor-pointer' onClick={handleDeleteUser}>Delete Account</p>
-                    <p className='cursor-pointer'>Sign Out</p>
+                    <p className='cursor-pointer' onClick={handleSignOut}>Sign Out</p>
                 </div>
                 {
                     error && <p className='py-1 px-2 lg:py-[6px] lg:px-[10px] bg-red-600 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit'>{error}</p>

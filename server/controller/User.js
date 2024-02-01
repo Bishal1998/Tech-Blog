@@ -78,7 +78,7 @@ const signOut = async (req, res, next) => {
 
     try {
 
-        res.clearCookies("access_token").status(200).json("User has been signed out");
+        res.clearCookie("access_token").status(200).json("User has been signed out");
 
     } catch (error) {
         return next(error)

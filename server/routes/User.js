@@ -1,7 +1,6 @@
 import express from 'express';
-import { deleteUser, test, updateUser } from '../controller/User.js';
+import { deleteUser, test, updateUser, signOut } from '../controller/User.js';
 import verifyToken from '../utils/verifyUser.js';
-import { signOut } from 'firebase/auth';
 
 const router = express.Router();
 

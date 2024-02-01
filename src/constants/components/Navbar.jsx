@@ -3,13 +3,16 @@ import { DesktopLogo, MobileLogo, LaptopLogo } from '../../assets/Logo'
 import { navItems } from '../data'
 import { Link, NavLink } from 'react-router-dom'
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { signOutFailure, signOutSuccess } from '../../store/authSlice';
+import axios from 'axios';
 
 const Navbar = () => {
 
     const [navActive, setNavActive] = useState(false);
     const [profileActive, setProfileActive] = useState(false);
     const { currentUser } = useSelector(state => state.auth)
+    const dispatch = useDispatch();
 
     /* Exit Mobile Nav on Click outside of Nav */
 
@@ -27,6 +30,20 @@ const Navbar = () => {
 
     const handleProfileClick = () => {
         setProfileActive((prev) => !prev)
+    }
+
+    const handleSignOut = async (e) => {
+        e.preventDefault();
+        setProfileActive(false)
+        try {
+            const res = await axios.post("/api/user/signout")
+            if (res.status === 200) {
+                dispatch(signOutSuccess());
+            }
+
+        } catch (error) {
+            dispatch(signOutFailure(error.message))
+        }
     }
 
     return (
@@ -78,7 +95,7 @@ const Navbar = () => {
                         <div className='w-full h-1 border-t border-dark-15' />
                         <div className='font-inter text-lg lg:text-base 2xl:text-lg text-white font-medium space-y-2 pt-2'>
                             <Link to={'/dashboard?tab=profile'}>Profile</Link>
-                            <p className='cursor-pointer'>Log Out</p>
+                            <p className='cursor-pointer' onClick={handleSignOut}>Log Out</p>
                         </div>
                     </div>
                 }
@@ -107,7 +124,7 @@ const Navbar = () => {
                                             <div className='flex flex-col justify-center items-center gap-4'>
                                                 <div className='w-full border-t border-dark-15 h-1' />
                                                 <NavLink to='/dashboard?tab=profile' className={({ isActive }) => isActive ? ' text-white  mx-auto bg-dark-8 rounded-xl p-4 text-lg   ' : 'p-4 text-lg'} >Profile</NavLink>
-                                                <Link to='/login'>
+                                                <Link to='/login' onClick={handleSignOut}>
                                                     <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>
                                                         Logout
                                                     </button>

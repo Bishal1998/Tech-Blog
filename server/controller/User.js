@@ -74,4 +74,15 @@ const deleteUser = async (req, res, next) => {
 
 }
 
-export { test, updateUser, deleteUser }
+const signOut = async (req, res, next) => {
+
+    try {
+
+        res.clearCookies("access_token").status(200).json("User has been signed out");
+
+    } catch (error) {
+        return next(error)
+    }
+}
+
+export { test, updateUser, deleteUser, signOut }

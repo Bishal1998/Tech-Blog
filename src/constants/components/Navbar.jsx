@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { DesktopLogo, MobileLogo, LaptopLogo } from '../../assets/Logo'
 import { navItems } from '../data'
 import { Link, NavLink } from 'react-router-dom'
@@ -14,23 +14,24 @@ const Navbar = () => {
     const { currentUser } = useSelector(state => state.auth)
     const dispatch = useDispatch();
 
-    /* Exit Mobile Nav on Click outside of Nav */
-
-    /* const mobileRef = useRef(null);
-
-
-    const handleClick = (e) => {
-        if (mobileRef.current && !mobileRef.current?.contains(e.target)) {
-            setNavActive(false)
-        }
-    }
-
-    document.addEventListener('click', handleClick);
-    document.removeEventListener('click', handleClick) */
+    const clickRef = useRef(null);
 
     const handleProfileClick = () => {
         setProfileActive((prev) => !prev)
     }
+
+    const handleClickOutside = (e) => {
+        if (clickRef.current && !clickRef.current.contains(e.target)) {
+            setProfileActive(false);
+        }
+    }
+    useEffect(() => {
+        document.addEventListener("click", handleClickOutside)
+
+        return () => {
+            document.removeEventListener("click", handleClickOutside)
+        }
+    }, [profileActive])
 
     const handleSignOut = async (e) => {
         e.preventDefault();
@@ -75,7 +76,7 @@ const Navbar = () => {
                 <div className='hidden lg:flex'>
                     {
                         currentUser ? (
-                            <img src={currentUser.profilePicture} alt={currentUser.username} className='rounded-full w-12 h-12 cursor-pointer object-cover' onClick={handleProfileClick} />
+                            <img src={currentUser.profilePicture} alt={currentUser.username} className='rounded-full w-12 h-12 cursor-pointer object-cover' onClick={handleProfileClick} ref={clickRef} />
                         ) : (
                             <Link to='/login'>
                                 <button className='font-inter text-lg text-dark-8 font-medium bg-yellow-55 rounded-xl py-4 px-6'>

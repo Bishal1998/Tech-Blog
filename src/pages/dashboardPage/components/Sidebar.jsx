@@ -1,6 +1,8 @@
 import React from 'react'
 import { FaUser } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
+import { IoMdCreate } from "react-icons/io";
+import { BiSpreadsheet } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOutFailure, signOutSuccess } from '../../../store/authSlice';
@@ -31,8 +33,15 @@ const Sidebar = () => {
             {
                 currentUser.isAdmin &&
                 <Link to={'/dashboard?tab=create-post'} className='bg-dark-15 border border-dark-15 px-2 gap-5 2xl:px-16 py-3 rounded-xl flex items-center 2xl:gap-7 w-full hover:bg-dark-20 cursor-pointer'>
-                    <IoLogOutOutline size={30} />
+                    <IoMdCreate size={30} />
                     <p className='font-medium whitespace-nowrap'>Create a Post</p>
+                </Link>
+            }
+            {
+                currentUser.isAdmin &&
+                <Link to={'/dashboard?tab=posts'} className='bg-dark-15 border border-dark-15 px-2 gap-5 2xl:px-16 py-3 rounded-xl flex items-center 2xl:gap-7 w-full hover:bg-dark-20 cursor-pointer'>
+                    <BiSpreadsheet size={30} />
+                    <p className='font-medium whitespace-nowrap'>Posts</p>
                 </Link>
             }
             <Link to='/dashboard?tab=profile' className='bg-dark-15 border border-dark-15 px-2 gap-2 2xl:px-16 py-3 rounded-xl flex justify-between items-center w-full hover:bg-dark-20 cursor-pointer'>

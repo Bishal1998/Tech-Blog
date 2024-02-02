@@ -16,6 +16,7 @@ const CreatePost = () => {
     const [imageFileUploadStatus, setImageFileUploadStatus] = useState(null);
     const [imageFileUploadError, setImageFileUploadError] = useState(null);
     const [publishError, setPublishError] = useState(null);
+    const [publishing, setPublishing] = useState(null);
     const [formData, setFormData] = useState({
         image: "",
         title: "",
@@ -66,9 +67,10 @@ const CreatePost = () => {
 
     const handlePostSubmit = async (e) => {
         e.preventDefault();
-
+        setPublishing(true)
         if (!formData.title || !formData.content) {
             setPublishError("All fields are required")
+            setPublishing(false)
             return;
         }
 
@@ -77,9 +79,11 @@ const CreatePost = () => {
             const res = await axios.post('/api/post/create', formData);
             if (res.status === 201) {
                 navigate(`/${res.data.slug}`)
+                setPublishError(false);
             }
         } catch (error) {
-            setPublishError(error.message)
+            setPublishError(error.message);
+            setPublishing(false);
         }
 
     }
@@ -114,11 +118,11 @@ const CreatePost = () => {
                 }
                 {formData.image && <img src={formData.image} alt='image' className='w-full h-72 object-cover' />}
                 <ReactQuill theme='snow' placeholder="What's on your mind?" className='h-72 mb-12' onChange={value => setFormData({ ...formData, content: value })} />
-                <button className='w-full p-5 rounded-lg border-yellow-55 bg-yellow-55 font-inter text-xl text-dark-8 hover:bg-yellow-60 font-medium' type='submit'>
+                <button className='w-full p-5 rounded-lg border-yellow-55 bg-yellow-55 font-inter text-xl text-dark-8 hover:bg-yellow-60 font-medium' type='submit' disabled={publishing}>
                     Publish
                 </button>
                 {
-                    publishError && <p className='py-1 px-2 lg:py-[6px] lg:px-[10px] bg-red-600 rounded-[4px] text-base lg:text-xl font-medium font-inter text-center text-white w-fit'>{publishError}</p>
+                    publishError && <p className='py-1 px-2 lg:py-[6px] lg:px-[10px] bg-red-600 rounded-[4px] text-base lg:text-xl font-medium font-inter text-center text-white w-fit' dis>{publishError}</p>
                 }
             </form>
         </section>

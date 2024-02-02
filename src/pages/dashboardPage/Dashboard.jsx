@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { CreatePost, Profile, Sidebar } from './components';
+import { CreatePost, Posts, Profile, Sidebar } from './components';
 
 const Dashboard = () => {
 
@@ -32,6 +32,12 @@ const Dashboard = () => {
                 tab === "create-post" &&
                 <div className='w-full lg:w-3/4 lg:ml-auto lg:mr-20'>
                     <CreatePost />
+                </div>
+            }
+            {
+                tab === "posts" &&
+                <div className='w-full lg:w-3/4 lg:ml-auto lg:mr-20'>
+                    <Posts />
                 </div>
             }
         </section> :

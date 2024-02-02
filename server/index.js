@@ -3,6 +3,7 @@ import { configDotenv } from "dotenv";
 import connectToDb from "./db/index.js";
 import userRoutes from "./routes/User.js";
 import authRoutes from "./routes/Auth.js";
+import postRoutes from "./routes/Post.js";
 import { errorMiddleware } from "./middleware/Middleware.js";
 import cookieParser from "cookie-parser";
 
@@ -16,6 +17,7 @@ app.use(cookieParser())
 
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/post", postRoutes);
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {

@@ -15,7 +15,7 @@ const Posts = () => {
 
                 const res = await axios.get(`/api/post/getPosts?userId=${currentUser._id}`);
                 if (res.status === 200) {
-                    setPosts(res.data)
+                    setPosts(res.data.posts)
                 }
 
             } catch (error) {
@@ -29,10 +29,24 @@ const Posts = () => {
 
     }, [currentUser._id])
 
+    const handlePostDelete = async (postId, userId) => {
+
+        try {
+            const res = await axios.delete(`/api/post/deletepost/${postId}/${userId}`);
+            if (res.status === 200) {
+                setPosts((prev) => {
+                    prev.posts?.filter((post) => post._id !== postId);
+                })
+            }
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
     return (
         <div>
             {
-                currentUser.isAdmin && posts.posts?.length > 0 ? (
+                currentUser.isAdmin && posts?.length > 0 ? (
                     <div className='overflow-x-auto'>
                         <table className='table-auto overflow-auto w-[98%] my-2 mx-auto bg-dark-10 rounded-xl overflow-x-scroll' cellPadding={20}>
                             <thead>
@@ -47,7 +61,7 @@ const Posts = () => {
                             </thead>
                             <tbody >
                                 {
-                                    posts.posts?.map((post) => {
+                                    posts?.map((post) => {
                                         const { _id, category, content, image, slug, title, updatedAt } = post;
                                         return (
 
@@ -62,7 +76,9 @@ const Posts = () => {
                                                 <td className='capitalize'>{category}</td>
                                                 {/* flex justify-center items-center  */}
                                                 <td>
-                                                    <MdDelete size={25} color='red' className='mx-auto cursor-pointer' />
+                                                    <MdDelete size={25} color='red' className='mx-auto cursor-pointer' onClick={() => {
+                                                        handlePostDelete(_id, currentUser._id);
+                                                    }} />
                                                 </td>
                                                 <td>
                                                     <MdEditSquare size={25} color='yellow' className='mx-auto cursor-pointer' />
@@ -75,7 +91,7 @@ const Posts = () => {
                         </table>
                     </div>
                 ) : (
-                    <div>
+                    <div className='text-white text-2xl font-medium font-kumbh text-center'>
                         No posts found
                     </div>
                 )

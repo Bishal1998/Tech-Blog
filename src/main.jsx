@@ -10,7 +10,7 @@ import store from './store/store.js'
 import { persistor } from "./store/store.js"
 import { PersistGate } from 'redux-persist/integration/react'
 import { Revolution } from "./pages/homePage/components"
-import { Posts } from './pages/dashboardPage/components/'
+import { Posts, UpdatePost } from './pages/dashboardPage/components/'
 const Layout = () => {
 
   return <>
@@ -49,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <Dashboard />
+      },
+      {
+        path: 'update-post/:postId',
+        element: <UpdatePost />
       },
     ]
   },

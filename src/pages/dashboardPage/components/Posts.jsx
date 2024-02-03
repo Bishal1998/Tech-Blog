@@ -81,7 +81,9 @@ const Posts = () => {
                                                     }} />
                                                 </td>
                                                 <td>
-                                                    <MdEditSquare size={25} color='yellow' className='mx-auto cursor-pointer' />
+                                                    <Link to={`/update-post/${_id}`}>
+                                                        <MdEditSquare size={25} color='yellow' className='mx-auto cursor-pointer' />
+                                                    </Link>
                                                 </td>
                                             </tr>
                                         )

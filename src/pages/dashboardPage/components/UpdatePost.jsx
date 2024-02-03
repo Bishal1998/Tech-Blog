@@ -86,7 +86,7 @@ const UpdatePost = () => {
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         setPublishing(true)
-        if (!formData.title || !formData.content) {
+        if (!formData.title || !formData.content || !formData.category || !formData.image) {
             setPublishError("All fields are required")
             setPublishing(false)
             return;
@@ -94,9 +94,10 @@ const UpdatePost = () => {
 
         try {
             setPublishError(null);
-            const res = await axios.post('/api/post/create', formData);
-            if (res.status === 201) {
-                navigate(`/${res.data.slug}`)
+            const res = await axios.put(`/api/post/updatepost/${formData._id}/${formData.userId}`, formData);
+            console.log(res)
+            if (res.status === 200) {
+                navigate(`/posts/${res.data.slug}`)
                 setPublishError(false);
             }
         } catch (error) {

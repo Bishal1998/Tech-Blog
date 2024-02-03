@@ -78,7 +78,7 @@ const CreatePost = () => {
             setPublishError(null);
             const res = await axios.post('/api/post/create', formData);
             if (res.status === 201) {
-                navigate(`/${res.data.slug}`)
+                navigate(`/posts/${res.data.slug}`)
                 setPublishError(false);
             }
         } catch (error) {

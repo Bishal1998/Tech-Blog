@@ -51,6 +51,10 @@ const router = createBrowserRouter([
         element: <Dashboard />
       },
       {
+        path: '/posts/:id',
+        element: <Posts />
+      },
+      {
         path: 'update-post/:postId',
         element: <UpdatePost />
       },
@@ -63,10 +67,6 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Signup />
-  },
-  {
-    path: '/posts/:id',
-    element: <Posts />
   },
 ])
 

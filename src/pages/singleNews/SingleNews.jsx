@@ -38,7 +38,7 @@ const SingleNews = ({ image, title, content, category, userId, updatedAt }) => {
 
                 </div>
                 <div className='flex flex-col justify-between gap-4 w-full px-6 lg:px-20 py-6'>
-                    <div className='w-2/3 mx-auto text-white font-inter custom-css' dangerouslySetInnerHTML={{ __html: content }} />
+                    <div className='w-full lg:w-2/3 mx-auto text-white font-inter custom-css' dangerouslySetInnerHTML={{ __html: content }} />
                     <div className="flex justify-center gap-4 whitespace-nowrap font-kumbh text-sm 2xl:text-lg text-gray-60">
                         <p className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15">
                             <FaHeart size={20} color="orange" />

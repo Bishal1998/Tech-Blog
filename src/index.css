@@ -26,12 +26,11 @@
 }
 
 .custom-css {
-
     text-align: justify;
 }
 
 .custom-css p {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-size: 18px;
     font-family: 'Inter', sans-serif;
 }
@@ -54,7 +53,23 @@
 }
 
 .custom-css h1,
-h1,
+h2,
 h3 {
     margin-bottom: 1rem;
+}
+
+.custom-css ul {
+    list-style-type: disc;
+}
+
+.custom-css li {
+    margin-left: 2rem;
+}
+
+.custom-css blockquote {
+    border-left: 4px solid #fff;
+    padding-left: 16px;
+    margin: 0;
+    font-style: italic;
+    color: #7E7E81;
 }

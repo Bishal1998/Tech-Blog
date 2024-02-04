@@ -23,7 +23,11 @@ const SingleNews = ({ image, title, content, category, userId, updatedAt }) => {
                             </div>
                             <div>
                                 <p className='text-gray-60'>Publication Date</p>
-                                <p className='text-white font-medium'>{new Date(updatedAt).toLocaleDateString()}</p>
+                                <p className='text-white font-medium'>{new Date(updatedAt).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: 'numeric'
+                                })}</p>
                             </div>
                             <div>
                                 <p className='text-gray-60'>Author</p>

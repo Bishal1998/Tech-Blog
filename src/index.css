@@ -25,11 +25,8 @@
     font-style: normal;
 }
 
-.custom-css {
-    text-align: justify;
-}
-
 .custom-css p {
+    text-align: justify;
     margin-bottom: 1rem;
     font-size: 18px;
     font-family: 'Inter', sans-serif;
@@ -77,4 +74,13 @@ h3 {
 .custom-css a {
     color: #FFD11A;
     text-decoration: none;
+}
+
+.custom-css pre {
+    background-color: #1A1A1A;
+    padding: 10px;
+    border: 1px solid #262626;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin-bottom: 1rem;
 }

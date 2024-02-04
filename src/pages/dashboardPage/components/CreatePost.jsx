@@ -68,7 +68,7 @@ const CreatePost = () => {
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         setPublishing(true)
-        if (!formData.title || !formData.content || !formData.category || !formData.image) {
+        if (!formData.title || !formData.content || !formData.image || !formData.category) {
             setPublishError("All fields are required")
             setPublishing(false)
             return;
@@ -94,8 +94,8 @@ const CreatePost = () => {
             <h2 className='text-center text-3xl font-kumbh text-white font-medium py-4'>Create Post</h2>
             <form className='w-[90%] mx-auto flex flex-col justify-center gap-6' onSubmit={handlePostSubmit}>
                 <div className='flex flex-col md:flex-row justify-between gap-4'>
-                    <input type="text" placeholder='Title' name='title' className='flex-1 border border-dark-15 bg-dark-15 outline-none shadow-[0_0_0_4px_#191919] p-5 rounded-lg font-inter text-dark-40 text-lg mb-4' onChange={e => setFormData({ ...formData, title: e.target.value })} />
-                    <select name="category" className='border border-dark-15 bg-dark-15 outline-none shadow-[0_0_0_4px_#191919] p-5 rounded-lg font-inter text-dark-40 text-lg mb-4' onChange={e => setFormData({ ...formData, category: e.target.value })}>
+                    <input type="text" placeholder='Title' name='title' className='flex-1 border border-dark-15 bg-dark-15 outline-none shadow-[0_0_0_4px_#191919] p-5 rounded-lg font-inter text-dark-40 text-lg mb-4' value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} />
+                    <select name="category" className='border border-dark-15 bg-dark-15 outline-none shadow-[0_0_0_4px_#191919] p-5 rounded-lg font-inter text-dark-40 text-lg mb-4' value={formData.category} onChange={e => setFormData({ ...formData, category: e.target.value })}>
                         <option value="uncategorized">Select a Category</option>
                         <option value="react">React</option>
                         <option value="javascript">JavaScript</option>
@@ -117,7 +117,7 @@ const CreatePost = () => {
                     imageFileUploadError && <p className='py-1 px-2 lg:py-[6px] lg:px-[10px] bg-red-600 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit'>{imageFileUploadError}</p>
                 }
                 {formData.image && <img src={formData.image} alt='image' className='w-full h-72 object-cover' />}
-                <ReactQuill theme='snow' placeholder="What's on your mind?" className='h-72 mb-12' onChange={value => setFormData({ ...formData, content: value })} />
+                <ReactQuill theme='snow' placeholder="What's on your mind?" className='h-72 mb-12' onChange={value => setFormData({ ...formData, content: value })} value={formData.content} />
                 <button className='w-full p-5 rounded-lg border-yellow-55 bg-yellow-55 font-inter text-xl text-dark-8 hover:bg-yellow-60 font-medium' type='submit' disabled={publishing}>
                     Publish
                 </button>

@@ -1,4 +1,5 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import {
     FaHeart,
     FaRegHeart,
@@ -8,6 +9,23 @@ import {
 import { useSelector } from 'react-redux';
 
 const SingleNews = ({ image, title, content, category, userId, updatedAt }) => {
+
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        const fetchAuthor = async () => {
+            try {
+                const res = await axios.get(`/api/user/${userId}`);
+                if (res.status === 200) {
+                    setUser(res.data)
+                }
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+        fetchAuthor();
+    }, [userId])
+
     return (
         <section>
             <div>
@@ -29,8 +47,9 @@ const SingleNews = ({ image, title, content, category, userId, updatedAt }) => {
                                     day: 'numeric'
                                 })}</p>
                             </div>
-                            <div>
+                            <div className='flex flex-col items-center justify-center'>
                                 <p className='text-gray-60'>Author</p>
+                                <img src={user && user.profilePicture} alt={user.username} className='h-6 w-6 rounded-full object-cover cursor-pointer' title={user.username} />
                                 {/* <p className='text-white'>{author}</p> */}
                             </div>
                             <div>

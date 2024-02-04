@@ -26,7 +26,6 @@ const Posts = () => {
         }
         fetchPost();
     }, [id])
-    console.log(post)
 
     if (loading) return <p className='font-kumbh text-lg text-white font-medium text-center'>Loading...</p>
     return <article className='flex flex-col w-full'>

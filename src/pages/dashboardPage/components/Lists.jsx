@@ -67,7 +67,11 @@ const Lists = () => {
                                             <tr className='text-center mb-4 font-inter text-base text-gray-60 cursor-pointer hover:bg-dark-8' key={_id}>
                                                 <td>
                                                     <Link to={`/posts/${slug}`}>
-                                                        {new Date(updatedAt).toLocaleDateString()}
+                                                        {new Date(updatedAt).toLocaleDateString('en-US', {
+                                                            year: 'numeric',
+                                                            month: 'short',
+                                                            day: 'numeric'
+                                                        })}
                                                     </Link>
                                                 </td>
                                                 <td>

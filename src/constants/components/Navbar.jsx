@@ -88,7 +88,7 @@ const Navbar = () => {
                 </div>
 
                 {
-                    profileActive && <div className='rounded-xl bg-dark-10 border border-dark-15 p-5 gap-4 absolute top-36 right-20'>
+                    profileActive && <div className='rounded-xl bg-dark-10 border border-dark-15 p-5 gap-4 absolute top-36 right-20 z-50'>
                         <div className='font-inter text-sm lg:text-base 2xl:text-lg text-gray-60 space-y-2'>
                             <p>{currentUser.username}</p>
                             <p>{currentUser.email}</p>

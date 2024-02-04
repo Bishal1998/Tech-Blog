@@ -64,17 +64,27 @@ const Lists = () => {
                                     posts?.map((post) => {
                                         const { _id, category, content, image, slug, title, updatedAt } = post;
                                         return (
-
-                                            <tr className='text-center mb-4 font-inter text-base text-gray-60 l' key={_id}>
-                                                <td>{new Date(updatedAt).toLocaleDateString()}</td>
+                                            <tr className='text-center mb-4 font-inter text-base text-gray-60 cursor-pointer hover:bg-dark-8' key={_id}>
                                                 <td>
-                                                    <Link to={`/post/${slug}`} >
+                                                    <Link to={`/posts/${slug}`}>
+                                                        {new Date(updatedAt).toLocaleDateString()}
+                                                    </Link>
+                                                </td>
+                                                <td>
+                                                    <Link to={`/posts/${slug}`} >
                                                         <img src={image} alt={title} className='w-20 h-10 object-cover mx-auto bg-dark-15' />
                                                     </Link>
                                                 </td>
-                                                <td>{title}</td>
-                                                <td className='capitalize'>{category}</td>
-                                                {/* flex justify-center items-center  */}
+                                                <td>
+                                                    <Link to={`/posts/${slug}`} >
+                                                        {title}
+                                                    </Link>
+                                                </td>
+                                                <td className='capitalize'>
+                                                    <Link to={`/posts/${slug}`} >
+                                                        {category}
+                                                    </Link>
+                                                </td>
                                                 <td>
                                                     <MdDelete size={25} color='red' className='mx-auto cursor-pointer' onClick={() => {
                                                         handlePostDelete(_id, currentUser._id);

@@ -97,7 +97,7 @@ const UpdatePost = () => {
             const res = await axios.put(`/api/post/updatepost/${formData._id}/${formData.userId}`, formData);
             console.log(res)
             if (res.status === 200) {
-                navigate(`/posts/${res.data.slug}`)
+                navigate(`/dashboard?tab=posts`)
                 setPublishError(false);
             }
         } catch (error) {

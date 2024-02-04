@@ -1,7 +1,8 @@
 import Sidebar from "./Sidebar";
 import Profile from "./Profile";
 import CreatePost from "./CreatePost";
-import Posts from "./Posts";
+import Lists from "./Lists";
 import UpdatePost from './UpdatePost'
+import Posts from "./Posts";
 
-export { Sidebar, Profile, CreatePost, Posts, UpdatePost }
+export { Sidebar, Profile, CreatePost, Lists, UpdatePost, Posts }

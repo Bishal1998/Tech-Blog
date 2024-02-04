@@ -11,9 +11,11 @@ import { persistor } from "./store/store.js"
 import { PersistGate } from 'redux-persist/integration/react'
 import { Revolution } from "./pages/homePage/components"
 import { Posts, UpdatePost } from './pages/dashboardPage/components/'
+import ScrollToTop from './ScrollToTop.jsx'
 const Layout = () => {
 
   return <>
+    <ScrollToTop />
     <Header />
     <Outlet />
     <Revolution />

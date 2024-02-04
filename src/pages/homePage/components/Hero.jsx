@@ -22,9 +22,9 @@ const stats = [
 
 const Hero = () => {
     return (
-        <section className="w-full md:px-6 lg:px-20">
+        <section className="w-full px-6 py-6 lg:px-20 lg:py-16">
             <div className="flex flex-col lg:flex-row justify-center items-center pb-10 lg:pb-0">
-                <div className="w-full md:w-3/4 px-6 lg:border-r border-dark-15">
+                <div className="w-full lg:w-3/4 px-6 lg:border-r border-dark-15">
                     <div className="space-y-5 py-6 lg:pt-[130px] lg:pb-[80px]">
                         <p className="font-kumbh text-lg md:text-2xl 2xl:text-3xl font-medium text-dark-40">
                             Your Journey to Tomorrow Begins Here
@@ -58,35 +58,35 @@ const Hero = () => {
                         })}
                     </div>
                 </div>
-                <div className="space-y-4 px-6 pt-6 ">
+                <div className="space-y-4 px-6 pt-6 w-full lg:w-1/4">
                     <p className="text-white font-inter text-lg md:text-xl 2xl:text-2xl font-medium">
                         Explore 1000+ resources
                     </p>
                     <p className="font-inter text-sm md:text-base 2xl:text-lg text-gray-60">
                         Over 1,000 articles on emerging tech trends and breakthroughs.
                     </p>
-                    <NavLink to='/resources' className="w-full lg:w-fit font-inter text-sm 2xl:text-lg text-gray-60 rounded-lg 2xl:rounded-xl border bg-dark-8 border-dark-15 flex justify-center items-center gap-2 py-4 px-5 2xl:py-4 2xl:px-6 ">
+                    <div className="w-full lg:w-fit font-inter text-sm 2xl:text-lg text-gray-60 rounded-lg 2xl:rounded-xl border bg-dark-8 border-dark-15 flex justify-center items-center gap-2 py-4 px-5 2xl:py-4 2xl:px-6 cursor-pointer">
                         <p className="whitespace-nowrap">Explore Resources</p>
                         <GoArrowUpRight color="yellow" size={24} />
 
-                    </NavLink>
+                    </div>
                 </div>
             </div>
             <hr className="absolute w-full border left-0 border-dark-15 z-40" />
-            <div className="px-6 lg:px-0 flex flex-col gap-12 lg:flex-row items-start lg:items-center justify-between py-10 ">
+            <div className="w-full px-6 lg:px-0 flex flex-col gap-12 lg:flex-row items-start lg:items-center justify-between py-10 ">
                 {
                     heroItems.map((item) => {
                         const { id, logo, title, subtitle, link, desc } = item;
 
                         return (
-                            <div key={id} className="flex flex-col items-start gap-6">
+                            <div key={id} className="w-full flex flex-col items-start gap-6">
                                 <div dangerouslySetInnerHTML={{ __html: logo }} />
-                                <div className="w-full flex gap-5">
+                                <div className="w-full lg:w-fit flex items-center justify-between  gap-5">
                                     <div className="font-inter">
                                         <p className="text-base md:text-lg 2xl:text-xl text-white font-medium">{title}</p>
                                         <p className="text-gray-50 text-sm md:text-base 2xl:text-xl ">{subtitle}</p>
                                     </div>
-                                    <NavLink to={link} className="p-3 md:p-4 bg-yellow-55 rounded-full">
+                                    <NavLink to={'/blogs'} className="p-3 md:p-4 bg-yellow-55 rounded-full">
                                         <GoArrowUpRight size={24} />
                                     </NavLink>
                                 </div>

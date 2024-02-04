@@ -2,13 +2,13 @@ import React from 'react'
 
 const Features = ({ logo: LogoComponent, title, desc, dataItems }) => {
     return (
-        <section className='px-6 py-6 lg:px-20 lg:py-16 flex flex-col xl:flex-row justify-between items-start md:items-center gap-4 border-b border-dark-15'>
-            <div>
+        <section className='px-6 py-6 lg:px-20 lg:py-16 flex flex-col lg:flex-row justify-between items-start md:items-center gap-4 border-b border-dark-15'>
+            <div className='w-full lg:w-1/4'>
                 {LogoComponent()}
                 <h2 className='text-white text-[40px] font-kumbh font-semibold'>{title}</h2>
                 <p className='text-gray-60 font-inter text-lg '>{desc}</p>
             </div>
-            <div className='grid lg:grid-rows-2 grid-cols-1 lg:grid-cols-2 gap-4'>
+            <div className='w-full lg:w-[70%] grid lg:grid-rows-2 grid-cols-1 lg:grid-cols-2 gap-4'>
                 {
                     dataItems.map((item) => {
                         const { id, title, desc } = item;

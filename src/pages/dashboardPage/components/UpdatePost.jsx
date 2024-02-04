@@ -86,11 +86,6 @@ const UpdatePost = () => {
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         setPublishing(true)
-        if (!formData.title || !formData.content || !formData.category || !formData.image) {
-            setPublishError("All fields are required")
-            setPublishing(false)
-            return;
-        }
 
         try {
             setPublishError(null);

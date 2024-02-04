@@ -73,3 +73,8 @@ h3 {
     font-style: italic;
     color: #7E7E81;
 }
+
+.custom-css a {
+    color: #FFD11A;
+    text-decoration: none;
+}

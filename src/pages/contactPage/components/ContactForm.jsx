@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../../../constants/components";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import axios from "axios";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const ContactForm = () => {
   const [terms, setTerms] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [phone, setPhone] = useState("");
 
   const handleChange = (e) => {
@@ -24,14 +26,27 @@ const ContactForm = () => {
     });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (terms) {
-      setFormData({ ...formData, phoneNumber: phone });
+      try {
+        const res = await axios.post("/api/post/contact", {
+          ...formData,
+          phoneNumber: phone,
+        });
+        if (res.status === 200) {
+          setSuccess(true);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.log(error.message);
+        setError(true);
+        setLoading(false);
+      }
     }
   };
 
-  console.log(formData);
   return (
     <section className="w-full max-w-[1762px] px-6 py-6 lg:px-20 lg:py-16 border-b border-dark-15 flex items-center flex-col xl:flex-row xl:items-center xl:justify-start overflow-hidden">
       <div className="flex flex-col gap-4 w-full">
@@ -159,11 +174,22 @@ const ContactForm = () => {
           <button
             className="p-4 rounded-lg border-yellow-55 bg-yellow-55 font-inter text-sm text-dark-8 hover:bg-yellow-60 font-medium"
             type="submit"
+            disabled={loading}
           >
-            Publish
+            Submit
           </button>
         </div>
       </form>
+      {error && (
+        <p className="py-1 px-2 lg:py-[6px] lg:px-[10px] bg-red-600 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit">
+          Couldn't Submit the Form.
+        </p>
+      )}
+      {success && (
+        <p className="py-1 px-2 lg:py-[6px] lg:px-[10px] bg-yellow-55 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit">
+          Form Submitted Successfully.
+        </p>
+      )}
     </section>
   );
 };

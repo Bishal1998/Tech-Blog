@@ -1,5 +1,7 @@
 import { errorHandler } from "../utils/Error.js"
 import Post from "../models/Post.js"
+import nodemailer from 'nodemailer'
+
 
 const createPost = async (req, res, next) => {
 
@@ -101,4 +103,45 @@ const updatePost = async (req, res, next) => {
     }
 }
 
-export { createPost, getPosts, deletePost, updatePost }
+
+const sendMail = async (req, res, next) => {
+    const { firstName, lastName, email, phoneNumber, message } = req.body;
+
+    const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        secure: false,
+        auth: {
+            user: process.env.SMTP_USERNAME,
+            pass: process.env.SMTP_PASSWORD,
+        },
+    });
+
+    const mailOptions = {
+        from: {
+            name: "Tech Blog",
+            address: email
+        },
+        to: process.env.SMTP_USERNAME,
+        subject: `New Message from ${firstName} ${lastName}`,
+        text: `I have a message and that is ${message}. My email is ${email}`,
+        html: `<div>
+            <p>${message} </p>
+            <p>With Regards,</p>
+            <p>${firstName} ${lastName} </p>
+            <p>${phoneNumber}</p>
+            <p>${email}</p>
+        </div>`
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.status(200).json(info);
+        }
+    });
+
+}
+
+export { createPost, getPosts, deletePost, updatePost, sendMail }

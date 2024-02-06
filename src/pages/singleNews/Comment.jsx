@@ -23,7 +23,6 @@ const Comment = ({ postId }) => {
       return;
     }
     try {
-      console.log(comment);
       const res = await axios.post(`/api/comment/create`, comment);
       if (res.status === 200) {
         setLoading(false);

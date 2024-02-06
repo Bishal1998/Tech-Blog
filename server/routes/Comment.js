@@ -5,6 +5,6 @@ import verifyToken from '../utils/verifyUser.js';
 const router = express.Router();
 
 router.post("/create", verifyToken, createComment);
-router.get("comment", getComment)
+router.get("/getcomment/:postId", getComment)
 
 export default router

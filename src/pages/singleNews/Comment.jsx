@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SingleComment from "./SingleComment";
@@ -14,6 +14,7 @@ const Comment = ({ postId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [comments, setComments] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,15 +34,31 @@ const Comment = ({ postId }) => {
           userId: currentUser._id,
           content: "",
         });
+        setComments([res.data, ...comments]);
       }
     } catch (error) {
       console.log(error.message);
       console.log("form submitted error");
-
       setLoading(false);
       setError(true);
     }
   };
+
+  useEffect(() => {
+    const fetchComment = async () => {
+      try {
+        const res = await axios.get(`/api/comment/getcomment/${postId}`);
+        if (res.status === 200) {
+          setComments(res.data);
+        }
+      } catch (error) {
+        console.log(error.message);
+        console.log("comment not found");
+      }
+    };
+
+    fetchComment();
+  }, [postId]);
 
   return (
     <>
@@ -89,9 +106,22 @@ const Comment = ({ postId }) => {
           </Link>
         )}
       </section>
-      <section className="space-y-8">
-        <SingleComment currentUser={currentUser} />
-      </section>
+      {comments.length > 0 && (
+        <section className="space-y-8">
+          {comments?.map((item) => {
+            const { content, postId, userId, _id, createdAt } = item;
+            return (
+              <SingleComment
+                key={_id}
+                content={content}
+                postId={postId}
+                userId={userId}
+                createdAt={createdAt}
+              />
+            );
+          })}
+        </section>
+      )}
     </>
   );
 };

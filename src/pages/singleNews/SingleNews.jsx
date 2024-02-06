@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Comment from "./Comment";
+import { useCommentCount } from "../../Custom";
 
 const SingleNews = ({
   image,
@@ -19,6 +20,7 @@ const SingleNews = ({
   _id: postId,
 }) => {
   const [user, setUser] = useState([]);
+  const commentCount = Number(useCommentCount(postId));
   useEffect(() => {
     const fetchAuthor = async () => {
       try {
@@ -31,6 +33,7 @@ const SingleNews = ({
       }
     };
     fetchAuthor();
+    console.log(commentCount);
   }, [userId]);
 
   return (
@@ -93,8 +96,7 @@ const SingleNews = ({
             </p>
             <p className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15">
               <FaRegComment size={20} />
-              {/* {commentCount > 999 ? `${commentCount / 1000}k` : commentCount} */}
-              20
+              {commentCount > 999 ? `${commentCount / 1000}k` : commentCount}
             </p>
             <p className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15">
               <FaRegShareSquare size={20} />

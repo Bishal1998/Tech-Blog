@@ -59,7 +59,6 @@ const Comment = ({ postId }) => {
 
     fetchComment();
   }, [postId]);
-
   return (
     <>
       <section className="w-full flex items-center justify-center py-4">

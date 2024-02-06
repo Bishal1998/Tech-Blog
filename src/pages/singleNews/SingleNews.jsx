@@ -33,7 +33,6 @@ const SingleNews = ({
       }
     };
     fetchAuthor();
-    console.log(commentCount);
   }, [userId]);
 
   return (

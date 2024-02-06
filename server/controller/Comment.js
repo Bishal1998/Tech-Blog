@@ -24,4 +24,14 @@ const createComment = async (req, res, next) => {
     }
 }
 
-export { createComment }
+const getComment = async (req, res, next) => {
+    try {
+
+        const { postId } = req.body;
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+export { createComment, getComment }

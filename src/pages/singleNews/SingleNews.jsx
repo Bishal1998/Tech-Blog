@@ -19,7 +19,6 @@ const SingleNews = ({
   _id: postId,
 }) => {
   const [user, setUser] = useState([]);
-  console.log(postId);
   useEffect(() => {
     const fetchAuthor = async () => {
       try {

@@ -32,7 +32,7 @@ const faqItems = [
 ];
 
 const FAQ = () => {
-  const [activeItems, setActiveItems] = useState({});
+  const [activeItems, setActiveItems] = useState({ 1: true });
   const handleClick = (id) => {
     setActiveItems((prev) => ({
       ...prev,

@@ -7,7 +7,7 @@ const Comment = ({ postId }) => {
   const { currentUser } = useSelector((state) => state.auth);
   const [comment, setComment] = useState({
     postId,
-    userId: currentUser._id,
+    userId: currentUser ? currentUser._id : "",
     content: "",
   });
   const [loading, setLoading] = useState(false);

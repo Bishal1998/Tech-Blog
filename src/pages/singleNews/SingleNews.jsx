@@ -1,14 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {
-  FaHeart,
-  FaRegHeart,
-  FaRegComment,
-  FaRegShareSquare,
-} from "react-icons/fa";
+import { FaHeart, FaRegComment, FaRegShareSquare } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Comment from "./Comment";
-import { useCommentCount } from "../../Custom";
+import { useCommentCount, useLikeCount } from "../../Custom";
+import { useNavigate } from "react-router-dom";
 
 const SingleNews = ({
   image,
@@ -19,8 +15,14 @@ const SingleNews = ({
   updatedAt,
   _id: postId,
 }) => {
-  const [user, setUser] = useState([]);
+  const { currentUser } = useSelector((state) => state.auth);
   const commentCount = Number(useCommentCount(postId));
+  const likedData = useLikeCount(postId);
+
+  const [likedUser, setLikedUser] = useState([]);
+  const [user, setUser] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchAuthor = async () => {
       try {
@@ -34,6 +36,26 @@ const SingleNews = ({
     };
     fetchAuthor();
   }, [userId]);
+
+  const handleLike = async () => {
+    try {
+      if (!currentUser) {
+        navigate("/login");
+      }
+      const res = await axios.put(`/api/post/like/${postId}`);
+      if (res.status === 200) {
+        setLikedUser(res.data.likes);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    if (likedData.length > 0) {
+      setLikedUser(likedData);
+    }
+  }, [likedData]);
 
   return (
     <section>
@@ -88,10 +110,21 @@ const SingleNews = ({
             dangerouslySetInnerHTML={{ __html: content }}
           />
           <div className="flex justify-center gap-4 whitespace-nowrap font-kumbh text-sm 2xl:text-lg text-gray-60">
-            <p className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15">
-              <FaHeart size={20} color="orange" />
-              {/* {likeCount > 999 ? `${likeCount / 1000}k` : likeCount} */}
-              10
+            <p
+              className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15 cursor-pointer"
+              onClick={handleLike}
+            >
+              <FaHeart
+                size={20}
+                color={`${
+                  currentUser && likedUser.includes(currentUser._id)
+                    ? "orange"
+                    : "white"
+                }`}
+              />
+              {likedUser.length > 999
+                ? `${likedUser.length / 1000}k`
+                : likedUser.length}
             </p>
             <p className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15">
               <FaRegComment size={20} />

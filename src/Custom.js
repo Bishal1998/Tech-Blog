@@ -21,4 +21,23 @@ const useCommentCount = (postId) => {
     return commentCount
 };
 
-export { useCommentCount }
+const useLikeCount = (postId) => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchLikeCount = async () => {
+            try {
+                const res = await axios.get(`/api/post/like/${postId}`)
+                if (res.status === 200) {
+                    setData(res.data.likes)
+                }
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+        fetchLikeCount();
+    }, [postId])
+    return data
+}
+
+export { useCommentCount, useLikeCount }

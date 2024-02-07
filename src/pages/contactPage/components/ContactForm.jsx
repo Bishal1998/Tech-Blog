@@ -38,6 +38,14 @@ const ContactForm = () => {
         if (res.status === 200) {
           setSuccess(true);
           setLoading(false);
+          setPhone("");
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            message: "",
+          });
+          setTerms(false);
         }
       } catch (error) {
         console.log(error.message);
@@ -84,12 +92,14 @@ const ContactForm = () => {
             type={"text"}
             title={"First Name"}
             name={"firstName"}
+            value={formData.firstName}
             handleChange={handleChange}
           />
           <Input
             type={"text"}
             title={"Last Name"}
             name={"lastName"}
+            value={formData.lastName}
             handleChange={handleChange}
           />
         </div>
@@ -98,6 +108,7 @@ const ContactForm = () => {
             type={"email"}
             title={"Email"}
             name={"email"}
+            value={formData.email}
             handleChange={handleChange}
           />
           <div className="flex flex-col w-full sm:w-[500px]">
@@ -110,6 +121,7 @@ const ContactForm = () => {
             <PhoneInput
               country="us"
               placeholder="Phone Number"
+              value={phone}
               countryCodeEditable={false}
               onChange={(value) => setPhone(value)}
               inputStyle={{
@@ -152,9 +164,22 @@ const ContactForm = () => {
             name="message"
             placeholder="Enter Message"
             id="message"
+            value={formData.message}
             className="w-full border border-dark-15 bg-dark-15 outline-none shadow-[0_0_0_4px_#191919] p-5 rounded-lg font-inter text-dark-40 text-lg mb-4"
             onChange={handleChange}
           ></textarea>
+          <div className="mx-auto py-4">
+            {error && (
+              <p className="py-1 px-2 lg:py-[6px] lg:px-[10px] bg-red-600 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit">
+                Couldn't Submit the Form.
+              </p>
+            )}
+            {success && (
+              <p className="py-1 px-2 lg:py-[6px] lg:px-[10px] bg-yellow-55 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit">
+                Form Submitted Successfully.
+              </p>
+            )}
+          </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 justify-between items-center w-screen sm:w-[500px] mx-auto 2xl:w-full">
           <div className="flex items-center gap-4">
@@ -162,6 +187,7 @@ const ContactForm = () => {
               type="checkbox"
               name="terms"
               id="terms"
+              value={terms}
               className="appearance-none w-4 h-4 rounded bg-dark-10 border border-dark-15 checked:bg-blue-500"
               onChange={(e) => {
                 setTerms(e.target.checked);
@@ -176,20 +202,10 @@ const ContactForm = () => {
             type="submit"
             disabled={loading}
           >
-            Submit
+            {loading ? "Submitting..." : "Submit"}
           </button>
         </div>
       </form>
-      {error && (
-        <p className="py-1 px-2 lg:py-[6px] lg:px-[10px] bg-red-600 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit">
-          Couldn't Submit the Form.
-        </p>
-      )}
-      {success && (
-        <p className="py-1 px-2 lg:py-[6px] lg:px-[10px] bg-yellow-55 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit">
-          Form Submitted Successfully.
-        </p>
-      )}
     </section>
   );
 };

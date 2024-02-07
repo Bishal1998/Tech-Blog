@@ -144,4 +144,31 @@ const sendMail = async (req, res, next) => {
 
 }
 
-export { createPost, getPosts, deletePost, updatePost, sendMail }
+
+const likePost = async (req, res, next) => {
+    try {
+
+        const post = await Post.findById(req.params.id);
+
+        if (!post) {
+            return next(errorHandler(403, "Post Not found"));
+        }
+
+        const userIndex = post.likes.indexOf(req.user.id);
+
+        if (userIndex === -1) {
+            post.likesCount += 1;
+            post.likes.push(req.user.id);
+        } else {
+            post.likesCount -= 1;
+            post.likes.splice(userIndex, 1);
+        }
+
+        await post.save();
+        res.status(200).json(post);
+    } catch (error) {
+        return next(error);
+    }
+}
+
+export { createPost, getPosts, deletePost, updatePost, sendMail, likePost }

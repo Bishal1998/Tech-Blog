@@ -28,6 +28,14 @@ const postSchema = new mongoose.Schema({
         type: String,
         unique: true,
         required: true
+    },
+    likes: {
+        type: Array,
+        default: []
+    },
+    likesCount: {
+        type: Number,
+        default: 0,
     }
 }, { timestamps: true })
 

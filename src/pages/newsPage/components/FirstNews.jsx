@@ -2,12 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart, FaRegComment } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useCommentCount } from "../../../Custom";
 
 const FirstNews = () => {
   const [post, setPost] = useState({});
   const [author, setAuthor] = useState({});
   const [loading, setLoading] = useState(true);
   const maxLength = 150;
+  const commentCount = useCommentCount(post._id);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,7 +25,16 @@ const FirstNews = () => {
     fetchPosts();
   }, []);
 
-  const { title, category, content, updatedAt, image, slug, userId } = post;
+  const {
+    title,
+    category,
+    content,
+    updatedAt,
+    image,
+    slug,
+    userId,
+    likesCount,
+  } = post;
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -85,13 +96,11 @@ const FirstNews = () => {
           <div className="flex items-center justify-between gap-8">
             <p className="flex items-center justify-center gap-2 py-2 px-4 rounded-[100px] bg-dark-10 border border-dark-15 cursor-pointer">
               <FaHeart size={24} color="orange" />
-              30k
-              {/* {likeCount > 999 ? `${likeCount / 1000}k` : likeCount} */}
+              {likesCount > 999 ? `${likesCount / 1000}k` : likesCount}
             </p>
             <p className="flex items-center justify-center gap-2 py-2 px-4 rounded-[100px] bg-dark-10 border border-dark-15 cursor-pointer">
               <FaRegComment size={24} />
-              20k
-              {/* {commentCount > 999 ? `${commentCount / 1000}k` : commentCount} */}
+              {commentCount > 999 ? `${commentCount / 1000}k` : commentCount}
             </p>
           </div>
           <Link

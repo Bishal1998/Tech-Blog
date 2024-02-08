@@ -24,6 +24,7 @@ const SingleNews = ({
   category,
   userId,
   updatedAt,
+  slug,
   _id: postId,
 }) => {
   const { currentUser } = useSelector((state) => state.auth);
@@ -69,6 +70,15 @@ const SingleNews = ({
       setLikedUser(likedData);
     }
   }, [likedData]);
+
+  const handleShare = async () => {
+    try {
+      const res = await axios.put(`/api/post/share/${postId}`);
+      console.log(res);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <section>
@@ -155,18 +165,21 @@ const SingleNews = ({
             </div>
             {shareActive && (
               <div className="flex items-center gap-4">
-                <FacebookShareButton>
+                <FacebookShareButton
+                  url="htps://google.com"
+                  onClick={handleShare}
+                >
                   <FacebookIcon size={35} round />
                 </FacebookShareButton>
-                <TwitterShareButton>
+                {/* <TwitterShareButton title={title} url={`${slug}`}>
                   <TwitterIcon size={35} round />
                 </TwitterShareButton>
-                <WhatsappShareButton>
+                <WhatsappShareButton title={title} separator={`${slug}`}>
                   <WhatsappIcon size={35} round />
                 </WhatsappShareButton>
-                <EmailShareButton>
+                <EmailShareButton subject={title}>
                   <EmailIcon size={35} round />
-                </EmailShareButton>
+                </EmailShareButton> */}
               </div>
             )}
           </div>

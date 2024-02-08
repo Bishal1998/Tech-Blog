@@ -198,6 +198,7 @@ const updateShare = async (req, res, next) => {
         }
 
         post.shareCount += 1;
+        await post.save()
         res.status(200).json(post);
 
     } catch (error) {

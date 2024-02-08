@@ -50,15 +50,15 @@ const Navbar = () => {
   return (
     <section className="bg-dark-10 p-4">
       <nav className="lg:px-20 flex items-center justify-between mx-auto">
-        <div className="md:hidden">
+        <Link to={"/"} className="md:hidden">
           <MobileLogo />
-        </div>
-        <div className="hidden md:flex 2xl:hidden">
+        </Link>
+        <Link to={"/"} className="hidden md:flex 2xl:hidden">
           <LaptopLogo />
-        </div>
-        <div className="hidden 2xl:flex">
+        </Link>
+        <Link to={"/"} className="hidden 2xl:flex">
           <DesktopLogo />
-        </div>
+        </Link>
         <div className="lg:hidden" onClick={() => setNavActive(true)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

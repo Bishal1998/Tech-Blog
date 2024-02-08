@@ -24,11 +24,14 @@ const Signup = () => {
     password: "",
   });
 
+  const [isError, setIsError] = useState(false);
+  const [loading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const {
-    loading,
     error: errorMessage,
     success: successMessage,
     currentUser,
@@ -46,6 +49,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     dispatch(signInStart());
 
     if (!formData.username || !formData.password || !formData.email) {
@@ -54,23 +58,24 @@ const Signup = () => {
 
     try {
       const res = await axios.post("/api/auth/signup", formData);
-      if (res.statusText === "OK") {
-        dispatch(signInSuccess(res.data));
+      if (res.status === 200) {
         setFormData({
           username: "",
           email: "",
           password: "",
         });
+        setIsLoading(false);
+        navigate("/login");
       }
     } catch (error) {
-      return dispatch(signInFailure(error.message));
+      setIsLoading(false);
+      console.log(error.message);
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(signInStart());
-
     if (
       !formData.email ||
       !formData.password ||
@@ -94,7 +99,6 @@ const Signup = () => {
       return dispatch(signInFailure(error.message));
     }
   };
-
   return currentUser ? (
     <Navigate to="/dashboard?tab=profile" />
   ) : (
@@ -102,12 +106,12 @@ const Signup = () => {
       <h2 className="text-yellow-55 font-kumbh text-6xl font-medium">
         {login ? "Login" : "Signup"}
       </h2>
-      {errorMessage && (
+      {isError && (
         <p className="py-1 px-2 lg:py-[6px] lg:px-[10px] bg-red-600 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit">
           {errorMessage}
         </p>
       )}
-      {successMessage && (
+      {isSuccess && (
         <p className="py-1 px-2 lg:py-[6px] lg:px-[10px] bg-yellow-55 rounded-[4px] text-base lg:text-xl font-medium font-inter text-white w-fit">
           User Registered Successfully
         </p>

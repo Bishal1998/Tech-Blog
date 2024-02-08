@@ -36,6 +36,7 @@ const SingleNews = ({
   const navigate = useNavigate();
 
   const [shareActive, setShareActive] = useState(false);
+  const shareUrl = `${import.meta.env.DOMAIN}/posts/${slug}`;
 
   useEffect(() => {
     const fetchAuthor = async () => {
@@ -164,21 +165,30 @@ const SingleNews = ({
             </div>
             {shareActive && (
               <div className="flex items-center gap-4">
-                <FacebookShareButton
-                  url="htps://google.com"
-                  onClick={handleShare}
-                >
+                <FacebookShareButton url={shareUrl} onClick={handleShare}>
                   <FacebookIcon size={35} round />
                 </FacebookShareButton>
-                {/* <TwitterShareButton title={title} url={`${slug}`}>
+                <TwitterShareButton
+                  title={title}
+                  url={shareUrl}
+                  onClick={handleShare}
+                >
                   <TwitterIcon size={35} round />
                 </TwitterShareButton>
-                <WhatsappShareButton title={title} separator={`${slug}`}>
+                <WhatsappShareButton
+                  title={title}
+                  url={shareUrl}
+                  onClick={handleShare}
+                >
                   <WhatsappIcon size={35} round />
                 </WhatsappShareButton>
-                <EmailShareButton subject={title}>
+                <EmailShareButton
+                  subject={title}
+                  url={shareUrl}
+                  onClick={handleShare}
+                >
                   <EmailIcon size={35} round />
-                </EmailShareButton> */}
+                </EmailShareButton>
               </div>
             )}
           </div>

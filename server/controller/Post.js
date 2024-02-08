@@ -188,5 +188,22 @@ const getLike = async (req, res, next) => {
     }
 }
 
+const updateShare = async (req, res, next) => {
+    try {
 
-export { createPost, getPosts, deletePost, updatePost, sendMail, likePost, getLike }
+        const post = await Post.findById(req.params.postId);
+
+        if (!post) {
+            return next(errorHandler(403, "No Post found"))
+        }
+
+        post.shareCount += 1;
+        res.status(200).json(post);
+
+    } catch (error) {
+        return next(error)
+    }
+}
+
+
+export { createPost, getPosts, deletePost, updatePost, sendMail, likePost, getLike, updateShare }

@@ -112,6 +112,41 @@ const filterPosts = [
     }
 ]
 
+const categoryItems = [
+    {
+        id: 1,
+        category: "HTML"
+    },
+    {
+        id: 2,
+        category: "CSS"
+    },
+    {
+        id: 3,
+        category: "JavaScript"
+    },
+    {
+        id: 4,
+        category: "React"
+    },
+    {
+        id: 5,
+        category: "Nextjs"
+    },
+    {
+        id: 6,
+        category: "Nodejs"
+    },
+    {
+        id: 7,
+        category: "Expressjs"
+    },
+    {
+        id: 8,
+        category: "Advanced JavaScript"
+    },
+]
+
 const testimonyItems = [
     {
         id: 1,
@@ -184,4 +219,4 @@ const revolutionItems = [
     },
 ]
 
-export { futureBlog, researchBlogs, filterPosts, testimonyItems, revolutionItems }
+export { futureBlog, researchBlogs, filterPosts, testimonyItems, revolutionItems, categoryItems }

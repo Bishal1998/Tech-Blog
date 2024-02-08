@@ -40,4 +40,23 @@ const useLikeCount = (postId) => {
     return data
 }
 
-export { useCommentCount, useLikeCount }
+const useShareCount = (postId) => {
+    const [shareCount, setShareCount] = useState(0);
+    useEffect(() => {
+
+        const fetchShareCount = async () => {
+            try {
+                const res = await axios.get(`/api/post/share/${postId}`)
+                if (res.status === 200) {
+                    setShareCount(res.data.shareCount)
+                }
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+        fetchShareCount();
+    }, [postId])
+    return shareCount
+}
+
+export { useCommentCount, useLikeCount, useShareCount }

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegComment, FaRegShareSquare } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Comment from "./Comment";
-import { useCommentCount, useLikeCount } from "../../Custom";
+import { useCommentCount, useLikeCount, useShareCount } from "../../Custom";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -30,7 +30,7 @@ const SingleNews = ({
   const { currentUser } = useSelector((state) => state.auth);
   const commentCount = Number(useCommentCount(postId));
   const likedData = useLikeCount(postId);
-
+  const shareCount = Number(useShareCount(postId));
   const [likedUser, setLikedUser] = useState([]);
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
@@ -159,8 +159,7 @@ const SingleNews = ({
                 onClick={() => setShareActive(!shareActive)}
               >
                 <FaRegShareSquare size={20} />
-                {/* {shareCount > 999 ? `${shareCount / 1000}k` : shareCount} */}
-                30
+                {shareCount > 999 ? `${shareCount / 1000}k` : shareCount}
               </p>
             </div>
             {shareActive && (

@@ -81,6 +81,10 @@ const SingleNews = ({
     }
   };
 
+  useEffect(() => {
+    document.title = `${title.toUpperCase()} - Tech Blog`;
+  }, [postId]);
+
   return (
     <section>
       <div>

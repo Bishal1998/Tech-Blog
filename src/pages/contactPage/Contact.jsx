@@ -1,14 +1,16 @@
-import React from 'react'
-import { ContactDetails, ContactForm, FAQ } from './components'
+import React, { useEffect } from "react";
+import { ContactDetails, ContactForm, FAQ } from "./components";
 
 const Contact = () => {
-    return (
-        <section>
-            <ContactDetails />
-            <ContactForm />
-            <FAQ />
-        </section>
-    )
-}
+  document.title = "Contact - Tech Blog";
 
-export default Contact
+  return (
+    <section>
+      <ContactDetails />
+      <ContactForm />
+      <FAQ />
+    </section>
+  );
+};
+
+export default Contact;

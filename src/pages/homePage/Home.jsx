@@ -1,17 +1,24 @@
-import React from 'react'
-import { Blog, FilterPosts, Hero, Resources, Revolution, Testimonials } from './components'
-
+import React from "react";
+import {
+  Blog,
+  FilterPosts,
+  Hero,
+  Resources,
+  Revolution,
+  Testimonials,
+} from "./components";
 
 const Home = () => {
-    return (
-        <div>
-            <Hero />
-            <Blog />
-            <FilterPosts />
-            <Resources />
-            <Testimonials />
-        </div>
-    )
-}
+  document.title = "Home - Tech Blog";
+  return (
+    <div>
+      <Hero />
+      <Blog />
+      <FilterPosts />
+      <Resources />
+      <Testimonials />
+    </div>
+  );
+};
 
-export default Home
+export default Home;

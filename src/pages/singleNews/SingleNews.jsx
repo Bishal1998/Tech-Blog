@@ -6,6 +6,17 @@ import Comment from "./Comment";
 import { useCommentCount, useLikeCount } from "../../Custom";
 import { useNavigate } from "react-router-dom";
 
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+  EmailIcon,
+  EmailShareButton,
+} from "react-share";
+
 const SingleNews = ({
   image,
   title,
@@ -22,6 +33,8 @@ const SingleNews = ({
   const [likedUser, setLikedUser] = useState([]);
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
+
+  const [shareActive, setShareActive] = useState(false);
 
   useEffect(() => {
     const fetchAuthor = async () => {
@@ -109,32 +122,53 @@ const SingleNews = ({
             className="w-full lg:w-2/3 mx-auto text-white font-inter custom-css"
             dangerouslySetInnerHTML={{ __html: content }}
           />
-          <div className="flex justify-center gap-4 whitespace-nowrap font-kumbh text-sm 2xl:text-lg text-gray-60">
-            <p
-              className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15 cursor-pointer"
-              onClick={handleLike}
-            >
-              <FaHeart
-                size={20}
-                color={`${
-                  currentUser && likedUser.includes(currentUser._id)
-                    ? "orange"
-                    : "white"
-                }`}
-              />
-              {likedUser.length > 999
-                ? `${likedUser.length / 1000}k`
-                : likedUser.length}
-            </p>
-            <p className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15">
-              <FaRegComment size={20} />
-              {commentCount > 999 ? `${commentCount / 1000}k` : commentCount}
-            </p>
-            <p className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15">
-              <FaRegShareSquare size={20} />
-              {/* {shareCount > 999 ? `${shareCount / 1000}k` : shareCount} */}
-              30
-            </p>
+          <div className="flex flex-col items-center justify-center gap-4 whitespace-nowrap font-kumbh text-sm 2xl:text-lg text-gray-60">
+            <div className="flex items-center justify-center gap-4">
+              <p
+                className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15 cursor-pointer"
+                onClick={handleLike}
+              >
+                <FaHeart
+                  size={20}
+                  color={`${
+                    currentUser && likedUser.includes(currentUser._id)
+                      ? "orange"
+                      : "white"
+                  }`}
+                />
+                {likedUser.length > 999
+                  ? `${likedUser.length / 1000}k`
+                  : likedUser.length}
+              </p>
+              <p className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15">
+                <FaRegComment size={20} />
+                {commentCount > 999 ? `${commentCount / 1000}k` : commentCount}
+              </p>
+              <p
+                className="flex items-center justify-center gap-2 py-[6px] px-3 rounded-[100px] bg-dark-10 border border-dark-15 cursor-pointer"
+                onClick={() => setShareActive(!shareActive)}
+              >
+                <FaRegShareSquare size={20} />
+                {/* {shareCount > 999 ? `${shareCount / 1000}k` : shareCount} */}
+                30
+              </p>
+            </div>
+            {shareActive && (
+              <div className="flex items-center gap-4">
+                <FacebookShareButton>
+                  <FacebookIcon size={35} round />
+                </FacebookShareButton>
+                <TwitterShareButton>
+                  <TwitterIcon size={35} round />
+                </TwitterShareButton>
+                <WhatsappShareButton>
+                  <WhatsappIcon size={35} round />
+                </WhatsappShareButton>
+                <EmailShareButton>
+                  <EmailIcon size={35} round />
+                </EmailShareButton>
+              </div>
+            )}
           </div>
           <Comment postId={postId} />
         </div>
